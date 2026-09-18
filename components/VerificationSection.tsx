@@ -63,11 +63,12 @@ export default function VerificationSection({ progress }: VerificationProps) {
       <div className="stick">
         {/* Section Header */}
         <div
+          className="sec-header-wrap"
           style={{
             position: "absolute",
             left: 0,
             right: 0,
-            top: "11%",
+            top: "clamp(80px, 12vh, 100px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -79,10 +80,10 @@ export default function VerificationSection({ progress }: VerificationProps) {
             Verification
           </span>
           <h2
-            className="serif"
+            className="serif sec-heading-verify"
             style={{
-              margin: "22px 0 0",
-              fontSize: "clamp(46px, 5.4vw, 80px)",
+              margin: "14px 0 0",
+              fontSize: "clamp(28px, 5.4vw, 80px)",
               lineHeight: 1.02,
               letterSpacing: "-.01em",
             }}
@@ -90,17 +91,16 @@ export default function VerificationSection({ progress }: VerificationProps) {
             Trust with <span className="i">clarity.</span>
           </h2>
           <p
+            className="sec-sub-text"
             style={{
-              margin: "20px 0 0",
-              fontSize: "15px",
+              margin: "10px 0 0",
+              fontSize: "clamp(13px, 3.8vw, 15px)",
               lineHeight: 1.65,
               color: "#B5B5B1",
               maxWidth: "460px",
             }}
           >
-            We verify what matters,
-            <br />
-            so you can focus on what’s next.
+            We verify what matters, so you can focus on what’s next.
           </p>
         </div>
 

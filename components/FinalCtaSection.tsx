@@ -15,19 +15,16 @@ export default function FinalCtaSection({ magneticRef }: FinalCtaProps) {
       aria-label="Your next move is waiting"
       style={{
         position: "relative",
-        height: "1000px",
         overflow: "clip",
         background: "#090909",
         color: "#F7F7F5",
+        paddingTop: "120px",
+        paddingBottom: "40px",
       }}
     >
       {/* Central Final Message */}
       <div
         style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          top: "200px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -36,10 +33,10 @@ export default function FinalCtaSection({ magneticRef }: FinalCtaProps) {
         }}
       >
         <h2
-          className="serif rv"
+          className="serif rv sec-heading-final"
           style={{
             margin: 0,
-            fontSize: "clamp(56px, 7vw, 108px)",
+            fontSize: "clamp(34px, 7vw, 108px)",
             lineHeight: 1.02,
             letterSpacing: "-.015em",
           }}
@@ -49,17 +46,17 @@ export default function FinalCtaSection({ magneticRef }: FinalCtaProps) {
           is waiting.
         </h2>
 
-        <p className="rv" style={{ margin: "28px 0 0", fontSize: "16px", color: "#B5B5B1" }}>
+        <p className="rv sec-sub-text" style={{ margin: "20px 0 0", fontSize: "clamp(13px, 3.8vw, 16px)", color: "#B5B5B1" }}>
           Make it count.
         </p>
 
         <div
           className="rv"
           style={{
-            marginTop: "56px",
+            marginTop: "36px",
             display: "flex",
             alignItems: "center",
-            gap: "32px",
+            gap: "24px",
             flexWrap: "wrap",
             justifyContent: "center",
           }}
@@ -69,7 +66,7 @@ export default function FinalCtaSection({ magneticRef }: FinalCtaProps) {
             className="pill"
             href="#top"
             style={{
-              padding: "17px 28px",
+              padding: "16px 26px",
               background: "#F7F7F5",
               color: "#0B0B0B",
               letterSpacing: ".12em",
@@ -88,10 +85,9 @@ export default function FinalCtaSection({ magneticRef }: FinalCtaProps) {
       <div
         aria-hidden="true"
         style={{
-          position: "absolute",
-          left: 0,
+          position: "relative",
           width: "calc(50% - 150px)",
-          top: "598px",
+          marginTop: "48px",
           height: "1px",
         }}
       >
@@ -106,13 +102,11 @@ export default function FinalCtaSection({ magneticRef }: FinalCtaProps) {
         <span className="travel" />
       </div>
 
-      {/* Footer */}
+      {/* Footer without huge dead space */}
       <footer
+        className="site-footer"
         style={{
-          position: "absolute",
-          left: "48px",
-          right: "48px",
-          bottom: "40px",
+          margin: "48px 48px 0",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -153,7 +147,7 @@ export default function FinalCtaSection({ magneticRef }: FinalCtaProps) {
           </a>
         </nav>
 
-        <span>© {new Date().getFullYear()} EXIT</span>
+        <span>© 2026 EXIT</span>
       </footer>
     </section>
   );

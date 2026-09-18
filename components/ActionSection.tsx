@@ -27,10 +27,16 @@ export default function ActionSection({ progress }: ActionSectionProps) {
   useEffect(() => {
     if (!trackRef.current || !secRef.current) return;
     const fw = secRef.current.clientWidth || 1440;
-    const travel = 160 + 5 * 520 - fw * 0.42;
+    const isMob = fw < 768;
+    const stepDist = isMob ? Math.min(300, fw * 0.85) : 520;
+    const startX = isMob ? 24 : 160;
+    const travel = isMob ? 5 * stepDist : (160 + 5 * 520 - fw * 0.42);
+
+    trackRef.current.style.setProperty("--step-dist", `${stepDist}px`);
+    trackRef.current.style.setProperty("--start-x", `${startX}px`);
     trackRef.current.style.transform = `translateX(${(-(travel * progress)).toFixed(1)}px)`;
     if (trackFillRef.current) {
-      trackFillRef.current.style.width = `${160 + 5 * 520 * progress}px`;
+      trackFillRef.current.style.width = `${startX + 5 * stepDist * progress}px`;
     }
   }, [progress]);
 
@@ -50,10 +56,11 @@ export default function ActionSection({ progress }: ActionSectionProps) {
       <div className="stick">
         {/* Section Header (Left) */}
         <div
+          className="action-header"
           style={{
             position: "absolute",
-            left: "48px",
-            top: "13%",
+            left: "clamp(20px, 4vw, 48px)",
+            top: "clamp(80px, 12vh, 120px)",
             display: "flex",
             flexDirection: "column",
             zIndex: 10,
@@ -63,10 +70,10 @@ export default function ActionSection({ progress }: ActionSectionProps) {
             The journey
           </span>
           <h2
-            className="serif"
+            className="serif sec-heading-action"
             style={{
-              margin: "22px 0 0",
-              fontSize: "clamp(42px, 4.8vw, 72px)",
+              margin: "16px 0 0",
+              fontSize: "clamp(28px, 4.8vw, 72px)",
               lineHeight: 1.04,
               letterSpacing: "-.01em",
             }}
@@ -79,10 +86,11 @@ export default function ActionSection({ progress }: ActionSectionProps) {
 
         {/* Counter (Right) */}
         <div
+          className="action-counter"
           style={{
             position: "absolute",
-            right: "48px",
-            top: "13%",
+            right: "clamp(20px, 4vw, 48px)",
+            top: "clamp(80px, 12vh, 120px)",
             textAlign: "right",
             fontSize: "12px",
             color: "#9A9A96",
@@ -100,9 +108,9 @@ export default function ActionSection({ progress }: ActionSectionProps) {
           style={{
             position: "absolute",
             left: 0,
-            top: "56%",
+            top: "54%",
             height: "280px",
-            width: "3200px",
+            width: "3400px",
             willChange: "transform",
           }}
         >
@@ -157,11 +165,12 @@ export default function ActionSection({ progress }: ActionSectionProps) {
             return (
               <div
                 key={st[0]}
+                className="action-stage-card"
                 style={{
                   position: "absolute",
                   top: 0,
-                  left: `${160 + i * 520}px`,
-                  width: "440px",
+                  left: `calc(var(--start-x, 160px) + ${i} * var(--step-dist, 520px))`,
+                  width: "clamp(260px, 75vw, 440px)",
                 }}
               >
                 {/* Milestone Dot */}
@@ -185,10 +194,10 @@ export default function ActionSection({ progress }: ActionSectionProps) {
                 <div style={{ paddingTop: "34px" }}>
                   <span style={{ fontSize: "11px", color: "#6B6B6B" }}>0{i + 1}</span>
                   <div
-                    className="serif stage-n"
+                    className="serif stage-n action-stage-title"
                     style={{
                       marginTop: "10px",
-                      fontSize: on ? "76px" : "34px",
+                      fontSize: on ? "clamp(36px, 8vw, 76px)" : "clamp(22px, 5vw, 34px)",
                       lineHeight: 1,
                       color: textColor,
                       whiteSpace: "nowrap",

@@ -1,16 +1,13 @@
 "use strict";
 "use client";
 
-import React, { useRef, useState } from "react";
+import React from "react";
 
 interface HowItWorksProps {
   progress: number;
 }
 
 export default function HowItWorksSection({ progress }: HowItWorksProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
   // Active step calculated based on progress (0 to 3)
   const activeStep = Math.min(3, Math.floor(progress * 4.3));
 
@@ -41,17 +38,6 @@ export default function HowItWorksSection({ progress }: HowItWorksProps) {
     },
   ];
 
-  const handleTogglePlay = () => {
-    if (!videoRef.current) return;
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
   return (
     <section
       id="how"
@@ -59,8 +45,8 @@ export default function HowItWorksSection({ progress }: HowItWorksProps) {
       aria-label="From search to the right fit"
       style={{
         position: "relative",
+        height: "2000px",
         background: "#F7F7F5",
-        paddingBottom: "120px",
       }}
     >
       <div className="stick">
@@ -82,11 +68,12 @@ export default function HowItWorksSection({ progress }: HowItWorksProps) {
 
         {/* Headings */}
         <div
+          className="sec-header-wrap"
           style={{
             position: "absolute",
             left: 0,
             right: 0,
-            top: "13%",
+            top: "clamp(80px, 12vh, 110px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -98,19 +85,18 @@ export default function HowItWorksSection({ progress }: HowItWorksProps) {
             How EXIT works
           </span>
           <h2
-            className="serif"
+            className="serif sec-heading-how"
             style={{
-              margin: "24px 0 0",
-              fontSize: "clamp(44px, 5.2vw, 78px)",
+              margin: "16px 0 0",
+              fontSize: "clamp(26px, 5.2vw, 78px)",
               lineHeight: 1.04,
               letterSpacing: "-.01em",
             }}
           >
-            From search to the
-            <br />
+            From search to the{" "}
             <span className="i">right fit.</span>
           </h2>
-          <p style={{ margin: "20px 0 0", fontSize: "15px", color: "#6B6B6B", maxWidth: "480px" }}>
+          <p className="sec-sub-text" style={{ margin: "12px 0 0", fontSize: "clamp(13px, 3.8vw, 15px)", color: "#6B6B6B", maxWidth: "480px" }}>
             A simpler way to find and connect with the right investors or companies.
           </p>
         </div>
@@ -121,7 +107,7 @@ export default function HowItWorksSection({ progress }: HowItWorksProps) {
           style={{
             position: "absolute",
             left: "50%",
-            top: "58%",
+            top: "clamp(230px, 36vh, 480px)",
             width: "1080px",
             marginLeft: "-540px",
           }}
@@ -380,93 +366,6 @@ export default function HowItWorksSection({ progress }: HowItWorksProps) {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </div>
-
-      {/* Video Content Section: "Watch how Exit works" */}
-      <div
-        style={{
-          marginTop: "980px",
-          padding: "60px 24px 0",
-          position: "relative",
-          zIndex: 10,
-        }}
-      >
-        <div style={{ maxWidth: "960px", margin: "0 auto", textAlign: "center" }}>
-          <span
-            className="lab"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              padding: "5px 12px",
-              borderRadius: "999px",
-              background: "#161616",
-              color: "#C9C9C5",
-              fontSize: "10px",
-              letterSpacing: ".18em",
-              marginBottom: "16px",
-            }}
-          >
-            <span
-              style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "#F7F7F5",
-              }}
-            />
-            See it in motion
-          </span>
-
-          <h2
-            className="serif"
-            style={{
-              fontSize: "clamp(36px, 4.4vw, 56px)",
-              lineHeight: 1.08,
-              color: "#0B0B0B",
-            }}
-          >
-            Watch how Exit <span className="i">works.</span>
-          </h2>
-          <p
-            style={{
-              marginTop: "14px",
-              fontSize: "15px",
-              color: "#6B6B6B",
-              maxWidth: "520px",
-              margin: "14px auto 0",
-            }}
-          >
-            From first connection to a closed deal — the whole idea in under a minute.
-          </p>
-
-          {/* 16:9 Video Frame */}
-          <div className="video-frame" onClick={handleTogglePlay}>
-            <video
-              ref={videoRef}
-              id="exitVideo"
-              playsInline
-              preload="metadata"
-              onPlay={() => setIsPlaying(true)}
-              onPause={() => setIsPlaying(false)}
-              onEnded={() => setIsPlaying(false)}
-            >
-              <source
-                src="/video/Create_a_premium_minimalist_ha.mp4"
-                type="video/mp4"
-              />
-            </video>
-
-            {/* Custom Play Overlay */}
-            <div className={`video-play ${isPlaying ? "hidden" : ""}`} id="videoPlay" aria-label="Play video">
-              <div className="play-btn">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="#0B0B0B">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-            </div>
           </div>
         </div>
       </div>

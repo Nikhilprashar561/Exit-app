@@ -19,6 +19,7 @@
 html {
   scroll-behavior: smooth;
   color-scheme: light dark;
+  background: #090909;
 }
 
 body {
@@ -144,6 +145,22 @@ a:focus-visible, button:focus-visible {
 .nl:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+/* Sticky Scroll Frame */
+.stick {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: clip;
+}
+
+@media (min-width: 1025px) {
+  .stick {
+    height: clamp(700px, 100vh, 940px);
+  }
 }
 
 /* Button Pills */
@@ -501,19 +518,66 @@ a:hover .ar, button:hover .ar {
 
 @media (max-width: 860px) {
   header.nav-header {
-    padding: 0 20px !important;
+    padding: 0 16px !important;
   }
   nav.nav-links-desktop {
+    display: none !important;
+  }
+  .nav-cta-desktop {
     display: none !important;
   }
   .hamburger-btn {
     display: flex !important;
   }
-  .hero-anno-founder {
-    display: none !important;
-  }
+  .hero-anno-founder,
   .hero-anno-investor {
     display: none !important;
+  }
+  .node {
+    opacity: 0 !important;
+  }
+
+  /* Responsive Headings */
+  .hero-heading {
+    font-size: clamp(32px, 8vw, 68px) !important;
+    line-height: 1.05 !important;
+  }
+  .sec-heading-noise,
+  .sec-heading-how,
+  .sec-heading-founders,
+  .sec-heading-investors,
+  .sec-heading-verify,
+  .sec-heading-match,
+  .sec-heading-action,
+  .sec-heading-final {
+    font-size: clamp(26px, 7vw, 54px) !important;
+    line-height: 1.06 !important;
+  }
+  .sec-sub-text {
+    font-size: clamp(12.5px, 3.8vw, 15px) !important;
+    max-width: 90% !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Section Header vertical clearance on mobile */
+  .sec-header-wrap {
+    top: clamp(74px, 12vh, 100px) !important;
+  }
+
+  /* Noise Section */
+  .noise-canvas-wrap {
+    transform: scale(0.65);
+    transform-origin: center 55%;
+  }
+
+  /* How It Works Section */
+  .how-grid-container {
+    width: calc(100% - 32px) !important;
+    max-width: 420px !important;
+    margin-left: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: clamp(235px, 35vh, 320px) !important;
   }
   .how-grid-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -521,37 +585,73 @@ a:hover .ar, button:hover .ar {
   }
   .card {
     height: auto !important;
-    min-height: 200px !important;
+    min-height: 180px !important;
+    padding: 16px !important;
   }
+
+  /* Founders Section */
   .founder-phone-wrap {
-    transform: scale(0.85) translate(-10%, 10%) !important;
+    left: 50% !important;
+    margin-left: 0 !important;
+    top: 51% !important;
+    transform: scale(0.70) !important;
+    transform-origin: center center !important;
   }
+  .founder-phone-1,
+  .founder-phone-2 {
+    left: -140px !important;
+  }
+  .founder-phone-2 {
+    top: 0 !important;
+  }
+
+  /* Investors Section */
   .investor-ui-box {
-    width: 92% !important;
-    margin-left: -46% !important;
+    width: calc(100% - 28px) !important;
+    max-width: 420px !important;
+    left: 50% !important;
+    margin-left: 0 !important;
+    transform: translateX(-50%) !important;
+    top: 42% !important;
   }
   .investor-side-notes-left,
   .investor-side-notes-right {
     display: none !important;
   }
+
+  /* Verification Section */
   .verification-box {
-    width: 92% !important;
-    margin-left: -46% !important;
+    width: calc(100% - 28px) !important;
+    max-width: 440px !important;
+    left: 50% !important;
+    margin-left: 0 !important;
+    transform: translateX(-50%) !important;
+    top: 42% !important;
   }
-  .match-grid-container {
-    grid-template-columns: 1fr !important;
-    row-gap: 20px !important;
-    top: 20% !important;
+
+  /* Match Section */
+  .match-scale-wrap {
+    transform: scale(0.65) !important;
+    transform-origin: center top !important;
   }
-  .match-ledger-center {
-    padding-top: 0 !important;
-  }
-  .pricing-rows-grid {
-    grid-template-columns: 1fr !important;
-    row-gap: 30px !important;
-  }
+
+  /* Action Section */
   .action-stick-track {
-    top: 50% !important;
+    top: 48% !important;
+  }
+
+  /* Footer */
+  footer,
+  .site-footer {
+    margin: 40px 16px 0 !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+    text-align: center !important;
+  }
+  .site-footer nav {
+    justify-content: center !important;
+    gap: 16px !important;
+    flex-wrap: wrap !important;
   }
 }
 
@@ -559,17 +659,9 @@ a:hover .ar, button:hover .ar {
   .how-grid-cards {
     grid-template-columns: 1fr !important;
   }
-  .pricing-grid-container {
-    grid-template-columns: 1fr !important;
-    top: 320px !important;
-  }
-  .plan {
-    border-left: none !important;
-    border-top: 1px solid rgba(11,11,11,.1) !important;
-    padding: 20px 16px !important;
-  }
   .founder-phone-wrap {
-    transform: scale(0.72) translate(-25%, 0%) !important;
+    top: 51% !important;
+    transform: scale(0.58) !important;
   }
   .founder-anno-1, .founder-anno-2, .founder-anno-3 {
     display: none !important;
@@ -577,16 +669,82 @@ a:hover .ar, button:hover .ar {
   .layer {
     padding: 0 12px !important;
     height: auto !important;
-    min-height: 64px !important;
+    min-height: 56px !important;
+  }
+  .investor-ui-box {
+    top: 44% !important;
+    transform: translateX(-50%) scale(0.92) !important;
+  }
+  .verification-box {
+    top: 44% !important;
+    transform: translateX(-50%) scale(0.92) !important;
+  }
+  .match-scale-wrap {
+    transform: scale(0.48) !important;
+  }
+  .noise-canvas-wrap {
+    transform: scale(0.48);
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 440px) {
+  .nav-logo-img {
+    width: 88px !important;
+  }
   .hero-heading {
-    font-size: 38px !important;
+    font-size: clamp(28px, 8.5vw, 38px) !important;
+  }
+  .sec-heading-noise,
+  .sec-heading-how,
+  .sec-heading-founders,
+  .sec-heading-investors,
+  .sec-heading-verify,
+  .sec-heading-match,
+  .sec-heading-action,
+  .sec-heading-final {
+    font-size: clamp(24px, 7vw, 32px) !important;
   }
   .founder-phone-wrap {
-    transform: scale(0.62) translate(-40%, -10%) !important;
+    top: 51% !important;
+    transform: scale(0.50) !important;
+  }
+  .investor-ui-box {
+    top: 45% !important;
+    transform: translateX(-50%) scale(0.86) !important;
+  }
+  .verification-box {
+    top: 45% !important;
+    transform: translateX(-50%) scale(0.86) !important;
+  }
+  .match-scale-wrap {
+    transform: scale(0.28) !important;
+  }
+  .noise-canvas-wrap {
+    transform: scale(0.38);
+  }
+}
+
+@media (max-width: 340px) {
+  .nav-logo-img {
+    width: 78px !important;
+  }
+  .hero-heading {
+    font-size: 26px !important;
+  }
+  .match-scale-wrap {
+    transform: scale(0.24) !important;
+  }
+  .founder-phone-wrap {
+    top: 51% !important;
+    transform: scale(0.44) !important;
+  }
+  .investor-ui-box {
+    top: 45% !important;
+    transform: translateX(-50%) scale(0.80) !important;
+  }
+  .verification-box {
+    top: 45% !important;
+    transform: translateX(-50%) scale(0.80) !important;
   }
 }
 

@@ -75,11 +75,12 @@ export default function InvestorsSection({ progress }: InvestorsSectionProps) {
 
         {/* Section Header */}
         <div
+          className="sec-header-wrap"
           style={{
             position: "absolute",
             left: 0,
             right: 0,
-            top: "10%",
+            top: "clamp(80px, 12vh, 100px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -91,20 +92,18 @@ export default function InvestorsSection({ progress }: InvestorsSectionProps) {
             For investors
           </span>
           <h2
-            className="serif"
+            className="serif sec-heading-investors"
             style={{
-              margin: "20px 0 0",
-              fontSize: "clamp(46px, 5.4vw, 80px)",
+              margin: "14px 0 0",
+              fontSize: "clamp(28px, 5.4vw, 80px)",
               lineHeight: 1.02,
               letterSpacing: "-.01em",
             }}
           >
             Look <span className="i">closer.</span>
           </h2>
-          <p style={{ margin: "18px 0 0", fontSize: "15px", lineHeight: 1.6, color: "#6B6B6B" }}>
-            Discover companies that match
-            <br />
-            the way you invest.
+          <p className="sec-sub-text" style={{ margin: "10px 0 0", fontSize: "clamp(13px, 3.8vw, 15px)", lineHeight: 1.6, color: "#6B6B6B" }}>
+            Discover companies that match the way you invest.
           </p>
         </div>
 

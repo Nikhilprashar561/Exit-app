@@ -103,11 +103,12 @@ export default function FoundersSection({ progress }: FoundersSectionProps) {
 
         {/* Section Header */}
         <div
+          className="sec-header-wrap"
           style={{
             position: "absolute",
             left: 0,
             right: 0,
-            top: "11%",
+            top: "clamp(80px, 12vh, 110px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -120,10 +121,10 @@ export default function FoundersSection({ progress }: FoundersSectionProps) {
             For founders
           </span>
           <h2
-            className="serif"
+            className="serif sec-heading-founders"
             style={{
-              margin: "22px 0 0",
-              fontSize: "clamp(44px, 4.8vw, 72px)",
+              margin: "16px 0 0",
+              fontSize: "clamp(26px, 4.8vw, 72px)",
               lineHeight: 1.06,
               letterSpacing: "-.01em",
             }}
@@ -133,9 +134,10 @@ export default function FoundersSection({ progress }: FoundersSectionProps) {
             in front of the <span className="i">right investors.</span>
           </h2>
           <p
+            className="sec-sub-text"
             style={{
-              margin: "20px 0 0",
-              fontSize: "15px",
+              margin: "12px 0 0",
+              fontSize: "clamp(13px, 3.8vw, 15px)",
               lineHeight: 1.65,
               color: "#B5B5B1",
               maxWidth: "520px",
@@ -161,7 +163,7 @@ export default function FoundersSection({ progress }: FoundersSectionProps) {
         >
           {/* Phone 1: Create Funding Request */}
           <div
-            className="phone"
+            className="phone founder-phone-1"
             style={{
               left: "-300px",
               top: 0,
@@ -382,7 +384,7 @@ export default function FoundersSection({ progress }: FoundersSectionProps) {
 
           {/* Phone 2: Discover Founders */}
           <div
-            className="phone"
+            className="phone founder-phone-2"
             style={{
               left: "32px",
               top: "40px",

@@ -32,11 +32,12 @@ export default function HeroSection({ magneticRef }: HeroSectionProps) {
 
       {/* Hero Center Content */}
       <div
+        className="hero-center-content"
         style={{
           position: "absolute",
           left: 0,
           right: 0,
-          top: "196px",
+          top: "clamp(110px, 18vh, 196px)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -61,8 +62,8 @@ export default function HeroSection({ magneticRef }: HeroSectionProps) {
         <h1
           className="serif hero-heading"
           style={{
-            margin: "44px 0 0",
-            fontSize: "clamp(48px, 6.6vw, 100px)",
+            margin: "28px 0 0",
+            fontSize: "clamp(34px, 6.6vw, 100px)",
             lineHeight: 1.02,
             letterSpacing: "-.015em",
             color: "#0B0B0B",
@@ -82,11 +83,11 @@ export default function HeroSection({ magneticRef }: HeroSectionProps) {
 
         {/* Subtitle */}
         <p
-          className="fade"
+          className="fade hero-subtitle"
           style={{
             animationDelay: "1.1s",
-            margin: "30px 0 0",
-            fontSize: "16px",
+            margin: "20px 0 0",
+            fontSize: "clamp(13.5px, 3.8vw, 16px)",
             lineHeight: 1.6,
             color: "#6B6B6B",
             maxWidth: "540px",
@@ -98,13 +99,13 @@ export default function HeroSection({ magneticRef }: HeroSectionProps) {
 
         {/* CTAs */}
         <div
-          className="fade"
+          className="fade hero-cta-wrap"
           style={{
             animationDelay: "1.5s",
-            marginTop: "44px",
+            marginTop: "32px",
             display: "flex",
             alignItems: "center",
-            gap: "30px",
+            gap: "24px",
             flexWrap: "wrap",
             justifyContent: "center",
           }}
@@ -112,7 +113,7 @@ export default function HeroSection({ magneticRef }: HeroSectionProps) {
           <a
             ref={magneticRef}
             className="pill"
-            href="#pricing"
+            href="#video"
             style={{ padding: "15px 24px", background: "#0B0B0B", color: "#F7F7F5" }}
           >
             Get Started <span className="ar">→</span>

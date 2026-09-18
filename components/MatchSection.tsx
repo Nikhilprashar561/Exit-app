@@ -79,11 +79,12 @@ export default function MatchSection({ progress }: MatchSectionProps) {
 
         {/* Section Header */}
         <div
+          className="sec-header-wrap"
           style={{
             position: "absolute",
             left: 0,
             right: 0,
-            top: "10%",
+            top: "clamp(80px, 12vh, 100px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -95,10 +96,10 @@ export default function MatchSection({ progress }: MatchSectionProps) {
             The match
           </span>
           <h2
-            className="serif"
+            className="serif sec-heading-match"
             style={{
-              margin: "20px 0 0",
-              fontSize: "clamp(38px, 4.4vw, 64px)",
+              margin: "14px 0 0",
+              fontSize: "clamp(26px, 4.4vw, 64px)",
               lineHeight: 1.04,
               letterSpacing: "-.01em",
             }}
@@ -108,19 +109,20 @@ export default function MatchSection({ progress }: MatchSectionProps) {
         </div>
 
         {/* 3-Column Match Architecture */}
-        <div
-          className="ui match-grid-container"
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "27%",
-            width: "1060px",
-            marginLeft: "-530px",
-            display: "grid",
-            gridTemplateColumns: "300px minmax(0, 1fr) 300px",
-            alignItems: "start",
-          }}
-        >
+        <div className="match-scale-wrap" style={{ position: "absolute", left: "50%", top: "clamp(180px, 26vh, 260px)", width: 0, height: 0 }}>
+          <div
+            className="ui match-grid-container"
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              width: "1040px",
+              marginLeft: "-520px",
+              display: "grid",
+              gridTemplateColumns: "290px minmax(0, 1fr) 290px",
+              alignItems: "start",
+            }}
+          >
           {/* Founder Surface (Left) */}
           <div
             style={{
@@ -528,6 +530,7 @@ export default function MatchSection({ progress }: MatchSectionProps) {
           >
             NovaNest and [Investor name] can now start the conversation.
           </div>
+        </div>
         </div>
       </div>
     </section>

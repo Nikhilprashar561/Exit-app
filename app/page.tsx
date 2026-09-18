@@ -1,7 +1,7 @@
 "use strict";
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import NoiseSection from "@/components/NoiseSection";
@@ -11,20 +11,11 @@ import InvestorsSection from "@/components/InvestorsSection";
 import VerificationSection from "@/components/VerificationSection";
 import MatchSection from "@/components/MatchSection";
 import ActionSection from "@/components/ActionSection";
-import PricingSection from "@/components/PricingSection";
+import VideoSection from "@/components/VideoSection";
 import FinalCtaSection from "@/components/FinalCtaSection";
 
 export default function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
-
-  // Section references
-  const secNoiseRef = useRef<HTMLDivElement>(null);
-  const secHowRef = useRef<HTMLDivElement>(null);
-  const secFoundersRef = useRef<HTMLDivElement>(null);
-  const secInvestorsRef = useRef<HTMLDivElement>(null);
-  const secVerifyRef = useRef<HTMLDivElement>(null);
-  const secMatchRef = useRef<HTMLDivElement>(null);
-  const secActionRef = useRef<HTMLDivElement>(null);
 
   // Progress state for each section
   const [progress, setProgress] = useState({
@@ -43,7 +34,6 @@ export default function Home() {
 
   // Magnetic button refs
   const heroBtnRef = useRef<HTMLAnchorElement>(null);
-  const planBtnRef = useRef<HTMLAnchorElement>(null);
   const finalBtnRef = useRef<HTMLAnchorElement>(null);
 
   // Mouse tracking state
@@ -66,9 +56,6 @@ export default function Home() {
     // Populate magnets
     if (heroBtnRef.current) {
       magnetsState.current.hero = { el: heroBtnRef.current, x: 0, y: 0, set: false };
-    }
-    if (planBtnRef.current) {
-      magnetsState.current.plan = { el: planBtnRef.current, x: 0, y: 0, set: false };
     }
     if (finalBtnRef.current) {
       magnetsState.current.final = { el: finalBtnRef.current, x: 0, y: 0, set: false };
@@ -100,13 +87,12 @@ export default function Home() {
       }
 
       // Calculate progress for each section
-      const vh = window.innerHeight || 900;
-      const fh = Math.max(700, Math.min(vh, 940));
+      const vh = window.innerHeight || 800;
 
       const calcP = (el: HTMLElement | null) => {
         if (!el) return 0;
         const r = el.getBoundingClientRect();
-        const span = r.height - fh;
+        const span = r.height - vh;
         if (span <= 0) return 0;
         return cl(-r.top / span);
       };
@@ -135,7 +121,7 @@ export default function Home() {
         setNavCompact(isCompact);
       }
 
-      // Check current section under top: 40px
+      // Check current section under top: 50px
       const sections = [
         "top",
         "noise",
@@ -145,7 +131,7 @@ export default function Home() {
         "verify",
         "match",
         "action",
-        "pricing",
+        "video",
         "final",
       ];
       let activeTheme: "light" | "dark" = "light";
@@ -218,7 +204,7 @@ export default function Home() {
       {/* 02 Too Much Noise -> The Signal Section */}
       <NoiseSection progress={progress.noise} />
 
-      {/* 03 How EXIT Works + Video Showcase */}
+      {/* 03 How EXIT Works (4 Step Interactive Cards) */}
       <HowItWorksSection progress={progress.how} />
 
       {/* 04 For Founders Section */}
@@ -236,8 +222,8 @@ export default function Home() {
       {/* 08 From Interest to Action Section */}
       <ActionSection progress={progress.action} />
 
-      {/* 09 Pricing / Choose Your Move Section */}
-      <PricingSection magneticRef={planBtnRef} />
+      {/* 09 Video Showcase Section (Replaced Pricing as requested) */}
+      <VideoSection />
 
       {/* 10 Final CTA & Footer Section */}
       <FinalCtaSection magneticRef={finalBtnRef} />

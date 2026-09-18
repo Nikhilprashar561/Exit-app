@@ -156,70 +156,77 @@ export default function NoiseSection({ progress }: NoiseSectionProps) {
       }}
     >
       <div className="stick" ref={frameRef} data-frame="1">
-        {/* SVG Bezier Noise/Signal Lines */}
-        <svg
-          ref={svgRef}
-          data-nsvg="1"
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            overflow: "visible",
-          }}
-        >
-          {Array.from({ length: 22 }).map((_, i) => (
-            <path
-              key={i}
-              ref={(el) => {
-                pathsRef.current[i] = el;
-              }}
-              pathLength="1"
-              fill="none"
-              stroke="#F7F7F5"
-              strokeWidth="0.8"
-              strokeDasharray="1 1"
-              strokeDashoffset="1"
-            />
-          ))}
-        </svg>
-
-        {/* 10 Category Pills */}
-        {labelTexts.map((text, idx) => (
-          <span
-            key={text}
-            ref={(el) => {
-              labelsRef.current[idx] = el;
-            }}
-            className="npill"
+        {/* Responsive Canvas Wrapper for Radar, Curves and Pills */}
+        <div className="noise-canvas-wrap" style={{ position: "absolute", inset: 0 }}>
+          {/* SVG Bezier Noise/Signal Lines */}
+          <svg
+            ref={svgRef}
+            data-nsvg="1"
             aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              overflow: "visible",
+            }}
           >
-            {text}
-          </span>
-        ))}
+            {Array.from({ length: 22 }).map((_, i) => (
+              <path
+                key={i}
+                ref={(el) => {
+                  pathsRef.current[i] = el;
+                }}
+                fill="none"
+                stroke="#F7F7F5"
+                strokeDasharray="1"
+                strokeDashoffset="1"
+                pathLength="1"
+              />
+            ))}
+          </svg>
 
-        {/* Center Signal Pulse Core */}
-        <div
-          ref={sigRef}
-          data-nsig="1"
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "58%",
-            width: 0,
-            height: 0,
-          }}
-        >
-          <span className="halo" />
-          <span className="halo halo2" />
-          <span
-            ref={coreRef}
-            data-ncore="1"
-            className="sig"
-            style={{ boxShadow: "0 0 0 7px rgba(247,247,245,.12)" }}
-          />
+          {/* 10 Category Pills along Curves */}
+          {labelTexts.map((txt, i) => (
+            <span
+              key={txt}
+              ref={(el) => {
+                labelsRef.current[i] = el;
+              }}
+              className="npill"
+              style={{
+                position: "absolute",
+                left: 0,
+                top: 0,
+                opacity: 0,
+                willChange: "transform, opacity",
+              }}
+            >
+              {txt}
+            </span>
+          ))}
+
+          {/* Pulsing Signal Core (Convergence Target) */}
+          <div
+            ref={sigRef}
+            data-nsig="1"
+            style={{
+              position: "absolute",
+              left: "50%",
+              top: "58%",
+              width: 0,
+              height: 0,
+            }}
+          >
+            <span className="halo" />
+            <span className="halo halo2" />
+            <span
+              ref={coreRef}
+              data-ncore="1"
+              className="sig"
+              style={{ boxShadow: "0 0 0 7px rgba(247,247,245,.12)" }}
+            />
+          </div>
         </div>
 
         {/* Vertical Light Trace Extending Down */}
@@ -240,11 +247,12 @@ export default function NoiseSection({ progress }: NoiseSectionProps) {
 
         {/* Section Header Content */}
         <div
+          className="sec-header-wrap"
           style={{
             position: "absolute",
             left: 0,
             right: 0,
-            top: "13%",
+            top: "clamp(80px, 12vh, 120px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -281,10 +289,10 @@ export default function NoiseSection({ progress }: NoiseSectionProps) {
           </div>
 
           <h2
-            className="serif"
+            className="serif sec-heading-noise"
             style={{
-              margin: "26px 0 0",
-              fontSize: "clamp(46px, 5.4vw, 80px)",
+              margin: "18px 0 0",
+              fontSize: "clamp(30px, 6vw, 80px)",
               lineHeight: 1.02,
               letterSpacing: "-.01em",
               color: "#F7F7F5",
@@ -294,9 +302,10 @@ export default function NoiseSection({ progress }: NoiseSectionProps) {
           </h2>
 
           <p
+            className="sec-sub-text"
             style={{
-              margin: "22px 0 0",
-              fontSize: "15px",
+              margin: "16px 0 0",
+              fontSize: "clamp(13px, 3.8vw, 15px)",
               lineHeight: 1.65,
               color: "#B5B5B1",
               maxWidth: "460px",

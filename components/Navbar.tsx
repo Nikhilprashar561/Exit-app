@@ -64,6 +64,7 @@ export default function Navbar({ theme, compact }: NavbarProps) {
           <img
             src="/exit.svg"
             alt="EXIT"
+            className="nav-logo-img"
             width="115"
             height="26"
             style={{
@@ -108,14 +109,11 @@ export default function Navbar({ theme, compact }: NavbarProps) {
             marginLeft: "auto",
             display: "flex",
             alignItems: "center",
-            gap: "22px",
+            gap: "16px",
           }}
         >
-          <a className="nl" href="#final" style={{ display: "none" }}>
-            Login
-          </a>
           <a
-            className="nl"
+            className="nl nav-cta-desktop"
             href="#final"
             style={{
               display: "inline-block",
@@ -124,8 +122,8 @@ export default function Navbar({ theme, compact }: NavbarProps) {
             Login
           </a>
           <a
-            className="pill"
-            href="#pricing"
+            className="pill nav-cta-desktop"
+            href="#video"
             style={{
               padding: "10px 18px",
               background: btnBg,
@@ -252,7 +250,7 @@ export default function Navbar({ theme, compact }: NavbarProps) {
           </a>
           <a
             className="pill"
-            href="#pricing"
+            href="#video"
             style={{
               marginTop: "8px",
               padding: "14px 20px",
