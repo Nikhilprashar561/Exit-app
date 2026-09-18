@@ -206,7 +206,7 @@ export default function VideoSection() {
               background: "#000000",
             }}
           >
-            <source src="/video/Create_a_premium_minimalist_ha.mp4" type="video/mp4" />
+            <source src="/video/Exit_edited_logo_replaced.mp4" type="video/mp4" />
           </video>
 
           {/* Large Center Play Overlay (when paused) */}
