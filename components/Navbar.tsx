@@ -113,15 +113,6 @@ export default function Navbar({ theme, compact }: NavbarProps) {
           }}
         >
           <a
-            className="nl nav-cta-desktop"
-            href="#final"
-            style={{
-              display: "inline-block",
-            }}
-          >
-            Login
-          </a>
-          <a
             className="pill nav-cta-desktop"
             href="#video"
             style={{
@@ -239,14 +230,6 @@ export default function Navbar({ theme, compact }: NavbarProps) {
             onClick={() => setMobileOpen(false)}
           >
             Verification
-          </a>
-          <a
-            className="nl"
-            href="#final"
-            style={{ fontSize: "16px", padding: "8px 0" }}
-            onClick={() => setMobileOpen(false)}
-          >
-            Login
           </a>
           <a
             className="pill"
