@@ -34,11 +34,11 @@ function FoundersSection({ progress }: FoundersSectionProps) {
   }, []);
 
   const phone1Op = isMobile
-    ? (progress > 0.44 ? cl(1 - (progress - 0.44) * 6) : cl(progress * 4))
+    ? (progress > 0.50 ? cl(1 - (progress - 0.50) * 14) : cl(progress * 5))
     : cl(progress * 4);
 
   const phone2Op = isMobile
-    ? cl((progress - 0.42) * 5)
+    ? cl((progress - 0.48) * 14)
     : cl((progress - 0.1) * 4);
 
   return (
@@ -406,6 +406,7 @@ function FoundersSection({ progress }: FoundersSectionProps) {
             style={{
               left: "32px",
               top: "40px",
+              background: "#141414",
               transform: `translateY(${(1 - cl((progress - 0.12) * 1.7)) * 460}px) rotateX(${(1 - cl((progress - 0.12) * 1.7)) * 18}deg) rotateZ(4deg) translate(calc(var(--mx, 0) * 8px), calc(var(--my, 0) * 5px))`,
               opacity: phone2Op,
               pointerEvents: phone2Op < 0.05 ? "none" : "auto",

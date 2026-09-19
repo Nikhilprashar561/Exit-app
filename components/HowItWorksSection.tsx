@@ -80,9 +80,10 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
             flexDirection: "column",
             alignItems: "center",
             textAlign: "center",
-            zIndex: 15,
-            padding: "0 20px 12px",
-            background: "linear-gradient(to bottom, #F7F7F5 75%, rgba(247,247,245,0) 100%)",
+            zIndex: 25,
+            padding: "0 20px 14px",
+            background: "#F7F7F5",
+            borderBottom: "1px solid rgba(11,11,11,0.06)",
           }}
         >
           <span className="lab" style={{ color: "#6B6B6B" }}>
@@ -384,8 +385,8 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
 
           const revs = [rev0, rev1, rev2, rev3];
 
-          // Smooth upward shift so revealed cards 03 & 04 stay comfortably visible in viewport
-          const scrollShift = cl((progress - 0.18) / 0.50) * 360;
+          // Smooth upward shift only as cards 03 & 04 reveal, keeping cards comfortably in view
+          const scrollShift = cl((progress - 0.28) / 0.46) * 170;
 
           return (
             <div
@@ -394,9 +395,12 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                 position: "absolute",
                 left: "50%",
                 transform: "translateX(-50%)",
-                top: "clamp(210px, 30vh, 245px)",
+                top: "clamp(200px, 28vh, 230px)",
                 width: "calc(100% - 32px)",
                 maxWidth: "420px",
+                height: "calc(100svh - 220px)",
+                overflow: "hidden",
+                paddingTop: "6px",
               }}
             >
               <div
