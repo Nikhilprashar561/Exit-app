@@ -508,6 +508,50 @@ a:hover .ar, button:hover .ar {
   display: none !important;
 }
 
+.action-track-vertical {
+  display: none !important;
+}
+.action-counter-mobile {
+  display: none !important;
+}
+
+@media (max-width: 1023px) {
+  .action-track-desktop {
+    display: none !important;
+  }
+  .action-track-vertical {
+    display: block !important;
+  }
+  .action-counter-desktop {
+    display: none !important;
+  }
+  .action-counter-mobile {
+    display: block !important;
+  }
+  .action-section {
+    height: auto !important;
+    padding-top: clamp(80px, 11vh, 100px) !important;
+    padding-bottom: clamp(60px, 8vh, 80px) !important;
+  }
+  .action-section .stick {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+  .action-header {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    padding: 0 clamp(16px, 4vw, 28px) !important;
+  }
+  .action-counter {
+    position: absolute !important;
+    top: 0 !important;
+    right: clamp(16px, 4vw, 28px) !important;
+  }
+}
+
 /* Responsive Styles */
 @media (max-width: 1180px) {
   .how-grid-container {
@@ -737,18 +781,7 @@ a:hover .ar, button:hover .ar {
     min-height: 60px !important;
   }
 
-  /* Action Section */
-  .action-stick-track {
-    top: clamp(245px, 35vh, 290px) !important;
-  }
-  .action-header {
-    top: clamp(75px, 11vh, 95px) !important;
-    left: 16px !important;
-  }
-  .action-counter {
-    top: clamp(75px, 11vh, 95px) !important;
-    right: 16px !important;
-  }
+
 
   /* Section Heights calibrated for mobile scroll pacing & eliminating dead space */
   .noise-section {
@@ -769,9 +802,7 @@ a:hover .ar, button:hover .ar {
   .match-section {
     height: 1600px !important;
   }
-  .action-section {
-    height: 1600px !important;
-  }
+
   .video-section {
     height: 1500px !important;
     padding: 0 !important;
@@ -829,9 +860,7 @@ a:hover .ar, button:hover .ar {
   .how-grid-mobile {
     top: clamp(190px, 26vh, 220px) !important;
   }
-  .action-stick-track {
-    top: clamp(230px, 33vh, 270px) !important;
-  }
+
 }
 
 @media (max-width: 360px) {
@@ -859,9 +888,7 @@ a:hover .ar, button:hover .ar {
   .how-grid-mobile {
     top: clamp(180px, 25vh, 210px) !important;
   }
-  .action-stick-track {
-    top: clamp(215px, 30vh, 250px) !important;
-  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
