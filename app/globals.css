@@ -607,7 +607,15 @@ a:hover .ar, button:hover .ar {
     background: transparent !important;
     border-bottom: none !important;
     padding-bottom: 0 !important;
-    top: clamp(80px, 10vh, 105px) !important;
+    top: clamp(60px, 8vh, 76px) !important;
+  }
+  .how-section .sec-heading-how {
+    font-size: clamp(22px, 3.8vw, 30px) !important;
+    margin: 6px 0 0 !important;
+  }
+  .how-section .sec-sub-text {
+    font-size: clamp(12px, 2vw, 13px) !important;
+    margin: 4px 0 0 !important;
   }
   .how-grid-container.how-grid-desktop {
     display: block !important;
@@ -615,7 +623,7 @@ a:hover .ar, button:hover .ar {
     left: 50% !important;
     margin-left: 0 !important;
     transform: translateX(-50%) !important;
-    top: clamp(260px, 28vh, 290px) !important;
+    top: clamp(190px, 26vh, 220px) !important;
   }
   .how-grid-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -623,8 +631,10 @@ a:hover .ar, button:hover .ar {
   }
   .how-grid-cards .card {
     height: auto !important;
-    min-height: 190px !important;
-    padding: 18px 20px !important;
+    min-height: 168px !important;
+    padding: 16px 18px !important;
+    transform: none !important;
+    box-sizing: border-box !important;
   }
   .how-line-desktop,
   .how-line-fill-desktop {
