@@ -51,6 +51,7 @@ export default function VerificationSection({ progress }: VerificationProps) {
   return (
     <section
       id="verify"
+      className="verification-section"
       data-theme="dark"
       aria-label="Trust with clarity"
       style={{
@@ -134,6 +135,7 @@ export default function VerificationSection({ progress }: VerificationProps) {
           <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: "10px" }}>
             {/* Background Rail */}
             <span
+              className="verification-rail"
               aria-hidden="true"
               style={{
                 position: "absolute",
@@ -146,6 +148,7 @@ export default function VerificationSection({ progress }: VerificationProps) {
             />
             {/* Active Progress Rail */}
             <span
+              className="verification-rail"
               aria-hidden="true"
               style={{
                 position: "absolute",

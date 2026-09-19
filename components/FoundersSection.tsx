@@ -25,9 +25,26 @@ export default function FoundersSection({ progress }: FoundersSectionProps) {
 
   const cl = (v: number) => Math.max(0, Math.min(1, v));
 
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    const checkMob = () => setIsMobile(window.innerWidth < 860);
+    checkMob();
+    window.addEventListener("resize", checkMob);
+    return () => window.removeEventListener("resize", checkMob);
+  }, []);
+
+  const phone1Op = isMobile
+    ? (progress > 0.44 ? cl(1 - (progress - 0.44) * 6) : cl(progress * 4))
+    : cl(progress * 4);
+
+  const phone2Op = isMobile
+    ? cl((progress - 0.42) * 5)
+    : cl((progress - 0.1) * 4);
+
   return (
     <section
       id="founders"
+      className="founders-section"
       data-theme="dark"
       aria-label="For founders"
       style={{
@@ -168,7 +185,8 @@ export default function FoundersSection({ progress }: FoundersSectionProps) {
               left: "-300px",
               top: 0,
               transform: `translateY(${(1 - cl(progress * 1.7)) * 380}px) rotateX(${(1 - cl(progress * 1.7)) * 16}deg) rotateZ(-4deg) translate(calc(var(--mx, 0) * -6px), calc(var(--my, 0) * -4px))`,
-              opacity: cl(progress * 4),
+              opacity: phone1Op,
+              pointerEvents: phone1Op < 0.05 ? "none" : "auto",
             }}
           >
             <div className="screen ui">
@@ -389,7 +407,8 @@ export default function FoundersSection({ progress }: FoundersSectionProps) {
               left: "32px",
               top: "40px",
               transform: `translateY(${(1 - cl((progress - 0.12) * 1.7)) * 460}px) rotateX(${(1 - cl((progress - 0.12) * 1.7)) * 18}deg) rotateZ(4deg) translate(calc(var(--mx, 0) * 8px), calc(var(--my, 0) * 5px))`,
-              opacity: cl((progress - 0.1) * 4),
+              opacity: phone2Op,
+              pointerEvents: phone2Op < 0.05 ? "none" : "auto",
             }}
           >
             <div className="screen ui">

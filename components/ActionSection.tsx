@@ -28,7 +28,7 @@ export default function ActionSection({ progress }: ActionSectionProps) {
     if (!trackRef.current || !secRef.current) return;
     const fw = secRef.current.clientWidth || 1440;
     const isMob = fw < 768;
-    const stepDist = isMob ? Math.min(300, fw * 0.85) : 520;
+    const stepDist = isMob ? Math.min(270, fw * 0.75) : 520;
     const startX = isMob ? 24 : 160;
     const travel = isMob ? 5 * stepDist : (160 + 5 * 520 - fw * 0.42);
 
@@ -44,6 +44,7 @@ export default function ActionSection({ progress }: ActionSectionProps) {
     <section
       id="action"
       ref={secRef}
+      className="action-section"
       data-theme="dark"
       aria-label="From interest to action"
       style={{

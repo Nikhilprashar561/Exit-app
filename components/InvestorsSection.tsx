@@ -62,6 +62,7 @@ export default function InvestorsSection({ progress }: InvestorsSectionProps) {
   return (
     <section
       id="investors"
+      className="investors-section"
       data-theme="light"
       aria-label="For investors"
       style={{
@@ -380,6 +381,7 @@ export default function InvestorsSection({ progress }: InvestorsSectionProps) {
 
         {/* Phase Indicator Progress Bar */}
         <div
+          className="investor-phase-bar"
           style={{
             position: "absolute",
             left: "50%",

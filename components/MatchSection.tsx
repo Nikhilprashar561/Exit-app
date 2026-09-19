@@ -52,6 +52,7 @@ export default function MatchSection({ progress }: MatchSectionProps) {
   return (
     <section
       id="match"
+      className="match-section"
       data-theme="light"
       aria-label="The match"
       style={{
@@ -108,8 +109,8 @@ export default function MatchSection({ progress }: MatchSectionProps) {
           </h2>
         </div>
 
-        {/* 3-Column Match Architecture */}
-        <div className="match-scale-wrap" style={{ position: "absolute", left: "50%", top: "clamp(180px, 26vh, 260px)", width: 0, height: 0 }}>
+        {/* Desktop 3-Column Match Architecture (Screen >= 861px) */}
+        <div className="match-scale-wrap match-desktop" style={{ position: "absolute", left: "50%", top: "clamp(180px, 26vh, 260px)", width: 0, height: 0 }}>
           <div
             className="ui match-grid-container"
             style={{
@@ -531,6 +532,215 @@ export default function MatchSection({ progress }: MatchSectionProps) {
             NovaNest and [Investor name] can now start the conversation.
           </div>
         </div>
+        </div>
+
+        {/* Mobile Dedicated Match Experience (Screen < 861px) */}
+        <div
+          className="ui match-mobile"
+          style={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            top: "clamp(160px, 23vh, 220px)",
+            width: "calc(100% - 24px)",
+            maxWidth: "420px",
+          }}
+        >
+          {/* Top Comparative Header */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "12px",
+              padding: "0 4px",
+            }}
+          >
+            {/* Founder Side Mini Badge */}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <span
+                className="serif"
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: 8,
+                  background: "#0B0B0B",
+                  color: "#F7F7F5",
+                  fontSize: 15,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontWeight: 600,
+                }}
+              >
+                N
+              </span>
+              <div>
+                <div style={{ fontSize: "12px", fontWeight: 600, color: "#0B0B0B" }}>NovaNest ✓</div>
+                <div style={{ fontSize: "10px", color: "#6B6B6B" }}>Founder · FinTech</div>
+              </div>
+            </div>
+
+            {/* Center Aligned Count Pill */}
+            <span
+              style={{
+                fontSize: "10.5px",
+                fontWeight: 600,
+                padding: "4px 10px",
+                borderRadius: "999px",
+                background: nAligned >= 4 ? "#0B0B0B" : "rgba(11,11,11,0.08)",
+                color: nAligned >= 4 ? "#F7F7F5" : "#6B6B6B",
+                border: `1px solid ${nAligned >= 4 ? "#0B0B0B" : "rgba(11,11,11,0.12)"}`,
+                transition: "all 0.5s ease",
+              }}
+            >
+              {nAligned} of 4 aligned
+            </span>
+
+            {/* Investor Side Mini Badge */}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", textAlign: "right" }}>
+              <div>
+                <div style={{ fontSize: "12px", fontWeight: 600, color: "#0B0B0B" }}>[Investor]</div>
+                <div style={{ fontSize: "10px", color: "#6B6B6B" }}>Angel · India</div>
+              </div>
+              <span
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: "50%",
+                  background: "#1E1E1E",
+                  color: "#F7F7F5",
+                  fontSize: 10,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                [ ]
+              </span>
+            </div>
+          </div>
+
+          {/* 4 Criteria Comparison Table Card */}
+          <div
+            style={{
+              borderRadius: "16px",
+              background: "#FFFFFF",
+              border: "1px solid rgba(11,11,11,0.08)",
+              boxShadow: "0 14px 34px -15px rgba(11,11,11,0.14)",
+              overflow: "hidden",
+            }}
+          >
+            {rows.map((r, idx) => {
+              const isAligned = ms > idx;
+              return (
+                <div
+                  key={idx}
+                  style={{
+                    padding: "11px 14px",
+                    display: "grid",
+                    gridTemplateColumns: "1fr auto 1fr",
+                    alignItems: "center",
+                    gap: "8px",
+                    borderBottom: idx < 3 ? "1px solid rgba(11,11,11,0.06)" : "none",
+                    background: isAligned ? "#FAFAF8" : "#FFFFFF",
+                    transition: "background 0.5s ease",
+                  }}
+                >
+                  {/* Founder Value */}
+                  <div>
+                    <div style={{ fontSize: "9px", color: "#8A8A86", textTransform: "uppercase", letterSpacing: ".06em" }}>
+                      {r.k}
+                    </div>
+                    <div
+                      style={{
+                        marginTop: "2px",
+                        fontSize: "12px",
+                        fontWeight: isAligned ? 600 : 400,
+                        color: "#0B0B0B",
+                        transition: "font-weight 0.4s",
+                      }}
+                    >
+                      {r.f}
+                    </div>
+                  </div>
+
+                  {/* Center Match Badge */}
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <span
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "24px",
+                        height: "24px",
+                        borderRadius: "50%",
+                        fontSize: "10.5px",
+                        fontWeight: 600,
+                        background: isAligned ? "#0B0B0B" : "rgba(11,11,11,0.06)",
+                        color: isAligned ? "#F7F7F5" : "#A8A8A4",
+                        border: `1px solid ${isAligned ? "#0B0B0B" : "rgba(11,11,11,0.1)"}`,
+                        transition: "all 0.5s ease",
+                      }}
+                    >
+                      {isAligned ? "✓" : "·"}
+                    </span>
+                  </div>
+
+                  {/* Investor Value */}
+                  <div style={{ textAlign: "right" }}>
+                    <div style={{ fontSize: "9px", color: "#8A8A86", textTransform: "uppercase", letterSpacing: ".06em" }}>
+                      {r.k}
+                    </div>
+                    <div
+                      style={{
+                        marginTop: "2px",
+                        fontSize: "12px",
+                        fontWeight: isAligned ? 600 : 400,
+                        color: "#0B0B0B",
+                        transition: "font-weight 0.4s",
+                      }}
+                    >
+                      {r.inv}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Match Conclusion */}
+          <div
+            style={{
+              marginTop: "16px",
+              textAlign: "center",
+              opacity: wordOp,
+              transform: `translateY(${wordY})`,
+              transition: "all 0.8s cubic-bezier(.16,1,.3,1)",
+            }}
+          >
+            <div
+              className="serif i"
+              style={{
+                fontSize: "36px",
+                lineHeight: 1,
+                color: "#0B0B0B",
+              }}
+            >
+              Match.
+            </div>
+            <div
+              style={{
+                marginTop: "6px",
+                fontSize: "12px",
+                color: "#6B6B6B",
+                opacity: capOp,
+                transition: "opacity 0.6s ease",
+              }}
+            >
+              NovaNest and [Investor name] can now start the conversation.
+            </div>
+          </div>
         </div>
       </div>
     </section>

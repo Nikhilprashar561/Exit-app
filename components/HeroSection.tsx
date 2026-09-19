@@ -11,6 +11,7 @@ export default function HeroSection({ magneticRef }: HeroSectionProps) {
   return (
     <section
       id="top"
+      className="hero-section"
       data-theme="light"
       aria-label="Every company has a next move"
       style={{
@@ -236,7 +237,7 @@ export default function HeroSection({ magneticRef }: HeroSectionProps) {
 
       {/* Scroll Down Indicator */}
       <div
-        className="fade"
+        className="fade hero-scroll-indicator"
         style={{
           animationDelay: "2.9s",
           position: "absolute",

@@ -41,11 +41,14 @@ export default function NoiseSection({ progress }: NoiseSectionProps) {
     const w = frameRef.current.clientWidth || 1440;
     const h = frameRef.current.clientHeight || 800;
 
+    const isMob = w < 768;
     svgRef.current.setAttribute("viewBox", `0 0 ${w} ${h}`);
     const cx = w / 2;
-    const cy = h * 0.58;
+    const cy = isMob ? h * 0.62 : h * 0.58;
 
-    const ys = [0.2, 0.27, 0.34, 0.41, 0.48, 0.55, 0.62, 0.69, 0.76, 0.83, 0.9];
+    const ys = isMob
+      ? [0.28, 0.34, 0.40, 0.46, 0.52, 0.58, 0.64, 0.70, 0.76, 0.82, 0.88]
+      : [0.2, 0.27, 0.34, 0.41, 0.48, 0.55, 0.62, 0.69, 0.76, 0.83, 0.9];
     const bend = ease((progress - 0.04) / 0.42);
     const cleanT = cl((progress - 0.5) / 0.25);
 
@@ -77,21 +80,20 @@ export default function NoiseSection({ progress }: NoiseSectionProps) {
 
       const d =
         side === "L"
-          ? `M 0 ${y0} C ${w * 0.3} ${y0} ${cx - w * 0.16} ${ye} ${cx} ${ye}`
-          : `M ${w} ${y0} C ${w * 0.7} ${y0} ${cx + w * 0.16} ${ye} ${cx} ${ye}`;
+          ? `M 0 ${y0} C ${w * 0.32} ${y0} ${cx - w * 0.16} ${ye} ${cx} ${ye}`
+          : `M ${w} ${y0} C ${w * 0.68} ${y0} ${cx + w * 0.16} ${ye} ${cx} ${ye}`;
 
       path.setAttribute("d", d);
       const draw = ease((progress - (i % 11) * 0.007) / 0.24);
       path.setAttribute("stroke-dashoffset", String(1 - draw));
 
       let op = 0.8;
-      let sw = 0.8;
+      let sw = isMob ? 1.1 : 0.8;
       if (isSig) {
-        op = 0.32 + 0.68 * cleanT;
-        sw = 0.8 + 0.5 * cleanT;
+        op = 0.35 + 0.65 * cleanT;
+        sw = isMob ? (1.5 + 0.8 * cleanT) : (0.8 + 0.5 * cleanT);
       } else {
-        op = 0.3 * (1 - cl((progress - 0.5 - r * 0.14) / 0.14));
-        sw = 0.8;
+        op = (isMob ? 0.38 : 0.3) * (1 - cl((progress - 0.5 - r * 0.14) / 0.14));
       }
 
       path.setAttribute("stroke-opacity", op.toFixed(3));
@@ -114,13 +116,13 @@ export default function NoiseSection({ progress }: NoiseSectionProps) {
       }
 
       const t = line.sig
-        ? 0.1 + 0.62 * ease((progress - 0.12) / 0.66)
-        : 0.08 + 0.5 * cl((progress - 0.12) / 0.5);
+        ? (isMob ? 0.36 : 0.1) + (isMob ? 0.42 : 0.62) * ease((progress - 0.12) / 0.66)
+        : (isMob ? 0.22 : 0.08) + (isMob ? 0.46 : 0.5) * cl((progress - 0.12) / 0.5);
 
       const pt = path.getPointAtLength(len * t);
       label.style.transform = `translate(${pt.x.toFixed(1)}px, ${pt.y.toFixed(1)}px) translate(-50%, -50%)`;
 
-      const o = line.sig ? line.draw : Math.min(line.draw, line.op / 0.3);
+      const o = line.sig ? line.draw : Math.min(line.draw, line.op / (isMob ? 0.38 : 0.3));
       if (line.sig && progress > 0.55) {
         label.style.color = "#F7F7F5";
       } else {
@@ -131,7 +133,7 @@ export default function NoiseSection({ progress }: NoiseSectionProps) {
 
     // Core pulsing scale
     if (coreRef.current) {
-      const s = 1 + 0.5 * ease((progress - 0.72) / 0.2);
+      const s = 1 + (isMob ? 0.6 : 0.5) * ease((progress - 0.72) / 0.2);
       coreRef.current.style.transform = `scale(${s.toFixed(3)})`;
     }
     if (sigRef.current) {
@@ -146,6 +148,7 @@ export default function NoiseSection({ progress }: NoiseSectionProps) {
   return (
     <section
       id="noise"
+      className="noise-section"
       data-theme="dark"
       aria-label="Too much noise"
       style={{

@@ -71,6 +71,7 @@ export default function VideoSection() {
   return (
     <section
       id="video"
+      className="video-section"
       data-theme="dark"
       aria-label="See EXIT in motion"
       style={{

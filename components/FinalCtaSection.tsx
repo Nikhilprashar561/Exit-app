@@ -11,6 +11,7 @@ export default function FinalCtaSection({ magneticRef }: FinalCtaProps) {
   return (
     <section
       id="final"
+      className="final-cta-section"
       data-theme="dark"
       aria-label="Your next move is waiting"
       style={{
@@ -83,6 +84,7 @@ export default function FinalCtaSection({ magneticRef }: FinalCtaProps) {
 
       {/* Traveling Particle along glowing line */}
       <div
+        className="final-travel-line"
         aria-hidden="true"
         style={{
           position: "relative",
