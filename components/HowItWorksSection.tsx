@@ -379,14 +379,15 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
           // Reveal calculations: each card appears one below another as user scrolls down
           // Once revealed, a card NEVER disappears (rev stays at 1.0)
           const rev0 = 1.0;
-          const rev1 = cl((progress - 0.10) / 0.12);
-          const rev2 = cl((progress - 0.24) / 0.12);
-          const rev3 = cl((progress - 0.38) / 0.12);
+          const rev1 = cl((progress - 0.08) / 0.14);
+          const rev2 = cl((progress - 0.26) / 0.14);
+          const rev3 = cl((progress - 0.44) / 0.14);
 
           const revs = [rev0, rev1, rev2, rev3];
 
-          // Smooth upward shift as cards 03 & 04 reveal, ensuring all cards (especially Card 04) are fully visible
-          const scrollShift = cl((progress - 0.20) / 0.52) * 280;
+          // Upward shift begins only after Card 02 is revealed and user proceeds toward Card 03 & 04
+          // During Step 01 & 02, scrollShift is 0 so Card 01 never shifts upward into the header
+          const scrollShift = cl((progress - 0.28) / 0.44) * 285;
 
           return (
             <div
@@ -395,10 +396,10 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                 position: "absolute",
                 left: "50%",
                 transform: "translateX(-50%)",
-                top: "clamp(180px, 24vh, 215px)",
+                top: "clamp(195px, 25vh, 225px)",
                 width: "calc(100% - 32px)",
                 maxWidth: "420px",
-                height: "calc(100svh - 195px)",
+                height: "calc(100svh - 200px)",
                 overflow: "hidden",
                 paddingTop: "4px",
               }}
