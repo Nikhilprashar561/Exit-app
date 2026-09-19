@@ -948,8 +948,8 @@ a:hover .ar, button:hover .ar {
     top: clamp(180px, 25vh, 210px) !important;
   }
   .how-grid-mobile {
-    top: clamp(165px, 22vh, 190px) !important;
-    height: calc(100svh - 170px) !important;
+    top: clamp(155px, 21vh, 180px) !important;
+    height: calc(100svh - 165px) !important;
   }
 }
 

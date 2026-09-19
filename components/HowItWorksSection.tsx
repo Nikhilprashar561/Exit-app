@@ -386,7 +386,7 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
           const revs = [rev0, rev1, rev2, rev3];
 
           // Smooth upward shift as cards 03 & 04 reveal, ensuring all cards (especially Card 04) are fully visible
-          const scrollShift = cl((progress - 0.22) / 0.50) * 240;
+          const scrollShift = cl((progress - 0.20) / 0.52) * 280;
 
           return (
             <div
