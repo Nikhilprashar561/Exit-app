@@ -570,20 +570,52 @@ a:hover .ar, button:hover .ar {
     line-height: 1.55 !important;
   }
 
+  /* Sticky Viewport on Mobile */
+  .stick {
+    height: 100svh !important;
+    height: 100vh !important;
+  }
+
   /* Section Header vertical clearance on mobile */
   .sec-header-wrap {
     top: clamp(60px, 8.5vh, 76px) !important;
     padding: 0 16px !important;
   }
 
-  /* Hero Section */
+  /* Hero Section Mobile Layout */
   .hero-section {
-    height: 100svh !important;
-    min-height: 560px !important;
-    max-height: 820px !important;
+    height: auto !important;
+    min-height: calc(100svh - 40px) !important;
+    max-height: none !important;
+    padding-top: clamp(74px, 12vh, 94px) !important;
+    padding-bottom: clamp(36px, 6vh, 48px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
   }
   .hero-center-content {
-    top: clamp(76px, 13vh, 120px) !important;
+    position: relative !important;
+    top: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 16px !important;
+  }
+  .hero-heading {
+    margin: 18px 0 0 !important;
+  }
+  .hero-subtitle {
+    margin: 14px 0 0 !important;
+  }
+  .hero-cta-wrap {
+    margin-top: 24px !important;
+    gap: 16px !important;
+  }
+  .hero-scroll-indicator {
+    display: none !important;
   }
 
   /* How It Works Desktop / Mobile visibility toggles */
@@ -592,6 +624,7 @@ a:hover .ar, button:hover .ar {
   }
   .how-grid-mobile {
     display: block !important;
+    top: clamp(200px, 28vh, 235px) !important;
   }
 
   /* Match Section Desktop / Mobile visibility toggles */
@@ -600,14 +633,15 @@ a:hover .ar, button:hover .ar {
   }
   .match-mobile {
     display: block !important;
+    top: clamp(170px, 25vh, 205px) !important;
   }
 
   /* Founders Section */
   .founder-phone-wrap {
     left: 50% !important;
     margin-left: 0 !important;
-    top: clamp(270px, 46vh, 340px) !important;
-    transform: scale(0.74) !important;
+    top: clamp(210px, 32vh, 250px) !important;
+    transform: scale(0.72) !important;
     transform-origin: center top !important;
   }
   .founder-phone-1,
@@ -625,7 +659,7 @@ a:hover .ar, button:hover .ar {
     left: 50% !important;
     margin-left: 0 !important;
     transform: translateX(-50%) !important;
-    top: clamp(230px, 35vh, 290px) !important;
+    top: clamp(170px, 26vh, 205px) !important;
   }
   .investor-side-notes-left,
   .investor-side-notes-right {
@@ -686,7 +720,7 @@ a:hover .ar, button:hover .ar {
     left: 50% !important;
     margin-left: 0 !important;
     transform: translateX(-50%) !important;
-    top: clamp(225px, 32vh, 275px) !important;
+    top: clamp(170px, 25vh, 205px) !important;
   }
   .layer {
     padding: 0 16px !important;
@@ -696,40 +730,45 @@ a:hover .ar, button:hover .ar {
 
   /* Action Section */
   .action-stick-track {
-    top: clamp(250px, 44vh, 320px) !important;
+    top: clamp(190px, 28vh, 230px) !important;
+  }
+  .action-header {
+    top: clamp(60px, 8.5vh, 76px) !important;
+    left: 16px !important;
+  }
+  .action-counter {
+    top: clamp(60px, 8.5vh, 76px) !important;
+    right: 16px !important;
   }
 
   /* Section Heights calibrated for mobile scroll pacing & eliminating dead space */
   .noise-section {
-    height: 2000px !important;
+    height: 1500px !important;
   }
   .how-section {
-    height: 2600px !important;
+    height: 1800px !important;
   }
   .founders-section {
-    height: 2200px !important;
+    height: 1600px !important;
   }
   .investors-section {
-    height: 2200px !important;
+    height: 1600px !important;
   }
   .verification-section {
-    height: 2000px !important;
+    height: 1500px !important;
   }
   .match-section {
-    height: 2200px !important;
+    height: 1600px !important;
   }
   .action-section {
-    height: 2400px !important;
+    height: 1600px !important;
   }
   .video-section {
-    padding: 80px 16px 50px !important;
+    padding: 70px 16px 44px !important;
   }
   .final-cta-section {
-    padding-top: 80px !important;
+    padding-top: 70px !important;
     padding-bottom: 40px !important;
-  }
-  .hero-scroll-indicator {
-    bottom: clamp(16px, 3vh, 32px) !important;
   }
   .verification-rail {
     left: 31.5px !important;
@@ -760,15 +799,19 @@ a:hover .ar, button:hover .ar {
     height: auto !important;
   }
   .founder-phone-wrap {
+    top: clamp(195px, 31vh, 235px) !important;
     transform: scale(0.66) !important;
   }
   .investor-ui-box {
-    top: clamp(220px, 34vh, 280px) !important;
+    top: clamp(160px, 25vh, 195px) !important;
     transform: translateX(-50%) scale(0.96) !important;
   }
   .verification-box {
-    top: clamp(220px, 34vh, 280px) !important;
+    top: clamp(160px, 24vh, 195px) !important;
     transform: translateX(-50%) scale(0.96) !important;
+  }
+  .how-grid-mobile {
+    top: clamp(195px, 28vh, 225px) !important;
   }
 }
 
@@ -777,16 +820,22 @@ a:hover .ar, button:hover .ar {
     width: 86px !important;
   }
   .hero-heading {
-    font-size: 28px !important;
+    font-size: clamp(24px, 7.5vw, 28px) !important;
   }
   .founder-phone-wrap {
+    top: clamp(185px, 29vh, 220px) !important;
     transform: scale(0.58) !important;
   }
   .investor-ui-box {
+    top: clamp(155px, 24vh, 185px) !important;
     transform: translateX(-50%) scale(0.90) !important;
   }
   .verification-box {
+    top: clamp(155px, 23vh, 185px) !important;
     transform: translateX(-50%) scale(0.90) !important;
+  }
+  .how-grid-mobile {
+    top: clamp(185px, 27vh, 215px) !important;
   }
 }
 

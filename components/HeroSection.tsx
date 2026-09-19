@@ -235,35 +235,6 @@ export default function HeroSection({ magneticRef }: HeroSectionProps) {
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
-      <div
-        className="fade hero-scroll-indicator"
-        style={{
-          animationDelay: "2.9s",
-          position: "absolute",
-          left: "50%",
-          bottom: "38px",
-          transform: "translateX(-50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "10px",
-          color: "#6B6B6B",
-        }}
-      >
-        <span className="lab" style={{ fontSize: "9px" }}>
-          Scroll
-        </span>
-        <span
-          aria-hidden="true"
-          style={{
-            display: "block",
-            width: "1px",
-            height: "38px",
-            background: "linear-gradient(#0B0B0B, rgba(11,11,11,0))",
-          }}
-        />
-      </div>
     </section>
   );
 }
