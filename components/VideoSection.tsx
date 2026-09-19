@@ -84,121 +84,152 @@ function VideoSection() {
       aria-label="See EXIT in motion"
       style={{
         position: "relative",
+        height: "2000px",
         background: "#090909",
         color: "#F7F7F5",
-        padding: "110px 20px 60px",
-        overflow: "hidden",
       }}
     >
-      {/* Background ambient radial glow */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "radial-gradient(60% 50% at 50% 50%, rgba(247,247,245,.06) 0%, rgba(247,247,245,.015) 50%, rgba(0,0,0,0) 80%)",
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* Grid texture */}
-      <div
-        className="grid"
-        aria-hidden="true"
-        style={{ position: "absolute", inset: 0, opacity: 0.35, pointerEvents: "none" }}
-      />
-
-      {/* Section Header */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 2,
-          maxWidth: "760px",
-          margin: "0 auto",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <span
-          className="lab"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            padding: "6px 14px",
-            borderRadius: "999px",
-            background: "rgba(247,247,245,.08)",
-            border: "1px solid rgba(247,247,245,.14)",
-            color: "#F7F7F5",
-            fontSize: "10.5px",
-            letterSpacing: ".2em",
-            marginBottom: "20px",
-          }}
-        >
-          <span
-            style={{
-              width: "6px",
-              height: "6px",
-              borderRadius: "50%",
-              background: "#F7F7F5",
-              boxShadow: "0 0 10px #F7F7F5",
-            }}
-          />
-          See EXIT in motion
-        </span>
-
-        <h2
-          className="serif"
-          style={{
-            fontSize: "clamp(42px, 5.4vw, 78px)",
-            lineHeight: 1.02,
-            letterSpacing: "-.01em",
-            color: "#F7F7F5",
-          }}
-        >
-          Watch how Exit <span className="i">works.</span>
-        </h2>
-
-        <p
-          style={{
-            marginTop: "18px",
-            fontSize: "15.5px",
-            lineHeight: 1.6,
-            color: "#B5B5B1",
-            maxWidth: "540px",
-          }}
-        >
-          From first connection to a closed deal — the entire ecosystem in under a minute.
-        </p>
-      </div>
-
-      {/* Video Frame Presentation Container */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 2,
-          maxWidth: "1040px",
-          margin: "48px auto 0",
-          width: "100%",
-        }}
-      >
+      <div className="stick">
+        {/* Background ambient radial glow */}
         <div
-          className="video-frame"
+          aria-hidden="true"
           style={{
-            cursor: "pointer",
-            aspectRatio: "16/9",
-            maxWidth: "100%",
-            borderRadius: "24px",
-            background: "#000000",
-            border: "1px solid rgba(247,247,245,.16)",
-            boxShadow:
-              "0 40px 100px -20px rgba(0,0,0,0.9), 0 0 60px rgba(247,247,245,0.04)",
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(60% 50% at 50% 50%, rgba(247,247,245,.06) 0%, rgba(247,247,245,.015) 50%, rgba(0,0,0,0) 80%)",
+            pointerEvents: "none",
           }}
-          onClick={handleTogglePlay}
+        />
+
+        {/* Grid texture */}
+        <div
+          className="grid"
+          aria-hidden="true"
+          style={{ position: "absolute", inset: 0, opacity: 0.35, pointerEvents: "none" }}
+        />
+
+        {/* Top connector line */}
+        <span
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: 0,
+            width: "1px",
+            marginLeft: "-0.5px",
+            height: "56px",
+            background: "#F7F7F5",
+            opacity: 0.3,
+          }}
+        />
+
+        {/* Video Content Centered Container */}
+        <div
+          className="video-content-wrap"
+          style={{
+            position: "relative",
+            zIndex: 2,
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "clamp(65px, 9vh, 90px) 20px clamp(20px, 3vh, 32px)",
+            boxSizing: "border-box",
+          }}
         >
+          {/* Section Header */}
+          <div
+            style={{
+              maxWidth: "760px",
+              margin: "0 auto",
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <span
+              className="lab"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "6px 14px",
+                borderRadius: "999px",
+                background: "rgba(247,247,245,.08)",
+                border: "1px solid rgba(247,247,245,.14)",
+                color: "#F7F7F5",
+                fontSize: "10.5px",
+                letterSpacing: ".2em",
+                marginBottom: "14px",
+              }}
+            >
+              <span
+                style={{
+                  width: "6px",
+                  height: "6px",
+                  borderRadius: "50%",
+                  background: "#F7F7F5",
+                  boxShadow: "0 0 10px #F7F7F5",
+                }}
+              />
+              See EXIT in motion
+            </span>
+
+            <h2
+              className="serif"
+              style={{
+                fontSize: "clamp(28px, 4.4vw, 68px)",
+                lineHeight: 1.04,
+                letterSpacing: "-.01em",
+                color: "#F7F7F5",
+              }}
+            >
+              Watch how Exit <span className="i">works.</span>
+            </h2>
+
+            <p
+              style={{
+                marginTop: "10px",
+                fontSize: "clamp(13px, 3.8vw, 15.5px)",
+                lineHeight: 1.55,
+                color: "#B5B5B1",
+                maxWidth: "540px",
+              }}
+            >
+              From first connection to a closed deal — the entire ecosystem in under a minute.
+            </p>
+          </div>
+
+          {/* Video Frame Presentation Container */}
+          <div
+            style={{
+              position: "relative",
+              zIndex: 2,
+              maxWidth: "min(920px, calc((100vh - 270px) * 16 / 9))",
+              width: "100%",
+              margin: "clamp(16px, 2.4vh, 28px) auto 0",
+            }}
+          >
+            <div
+              className="video-frame"
+              style={{
+                position: "relative",
+                cursor: "pointer",
+                aspectRatio: "16/9",
+                width: "100%",
+                borderRadius: "20px",
+                background: "#000000",
+                border: "1px solid rgba(247,247,245,.16)",
+                boxShadow:
+                  "0 40px 100px -20px rgba(0,0,0,0.9), 0 0 60px rgba(247,247,245,0.04)",
+                overflow: "hidden",
+              }}
+              onClick={handleTogglePlay}
+            >
           <video
             ref={videoRef}
             id="exitVideo"
@@ -381,7 +412,9 @@ function VideoSection() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
   );
 }
 

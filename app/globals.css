@@ -773,7 +773,11 @@ a:hover .ar, button:hover .ar {
     height: 1600px !important;
   }
   .video-section {
-    padding: 70px 16px 44px !important;
+    height: 1500px !important;
+    padding: 0 !important;
+  }
+  .video-content-wrap {
+    padding: clamp(65px, 9vh, 80px) 16px 24px !important;
   }
   .final-cta-section {
     padding-top: 70px !important;
