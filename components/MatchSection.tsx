@@ -85,7 +85,7 @@ function MatchSection({ progress }: MatchSectionProps) {
             position: "absolute",
             left: 0,
             right: 0,
-            top: "clamp(80px, 12vh, 100px)",
+            top: "clamp(96px, 12.5vh, 115px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -110,7 +110,7 @@ function MatchSection({ progress }: MatchSectionProps) {
         </div>
 
         {/* Desktop 3-Column Match Architecture (Screen >= 861px) */}
-        <div className="match-scale-wrap match-desktop" style={{ position: "absolute", left: "50%", top: "clamp(180px, 26vh, 260px)", width: 0, height: 0 }}>
+        <div className="match-scale-wrap match-desktop" style={{ position: "absolute", left: "50%", top: "clamp(195px, 27vh, 265px)", width: 0, height: 0 }}>
           <div
             className="ui match-grid-container"
             style={{

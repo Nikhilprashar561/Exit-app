@@ -61,7 +61,7 @@ function ActionSection({ progress }: ActionSectionProps) {
           style={{
             position: "absolute",
             left: "clamp(20px, 4vw, 48px)",
-            top: "clamp(80px, 12vh, 120px)",
+            top: "clamp(96px, 13vh, 125px)",
             display: "flex",
             flexDirection: "column",
             zIndex: 10,
@@ -91,7 +91,7 @@ function ActionSection({ progress }: ActionSectionProps) {
           style={{
             position: "absolute",
             right: "clamp(20px, 4vw, 48px)",
-            top: "clamp(80px, 12vh, 120px)",
+            top: "clamp(96px, 13vh, 125px)",
             textAlign: "right",
             fontSize: "12px",
             color: "#9A9A96",

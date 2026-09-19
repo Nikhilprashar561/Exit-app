@@ -583,6 +583,11 @@ a:hover .ar, button:hover .ar {
     top: clamp(65px, 9vh, 80px) !important;
     padding: 0 16px !important;
   }
+  .how-section .sec-header-wrap {
+    background: #F7F7F5 !important;
+    border-bottom: 1px solid rgba(11, 11, 11, 0.06) !important;
+    padding-bottom: 14px !important;
+  }
 
   /* Hero Section Mobile Layout */
   .hero-section {

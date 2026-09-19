@@ -255,7 +255,7 @@ function NoiseSection({ progress }: NoiseSectionProps) {
             position: "absolute",
             left: 0,
             right: 0,
-            top: "clamp(80px, 12vh, 120px)",
+            top: "clamp(96px, 13vh, 130px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

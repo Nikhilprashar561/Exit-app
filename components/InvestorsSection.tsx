@@ -81,7 +81,7 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
             position: "absolute",
             left: 0,
             right: 0,
-            top: "clamp(80px, 12vh, 100px)",
+            top: "clamp(100px, 13vh, 125px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

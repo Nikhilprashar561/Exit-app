@@ -75,15 +75,13 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
             position: "absolute",
             left: 0,
             right: 0,
-            top: "clamp(60px, 8.5vh, 76px)",
+            top: "clamp(110px, 14vh, 145px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             textAlign: "center",
             zIndex: 25,
-            padding: "0 20px 14px",
-            background: "#F7F7F5",
-            borderBottom: "1px solid rgba(11,11,11,0.06)",
+            padding: "0 20px",
           }}
         >
           <span className="lab" style={{ color: "#6B6B6B" }}>
@@ -112,7 +110,7 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
           style={{
             position: "absolute",
             left: "50%",
-            top: "clamp(230px, 36vh, 480px)",
+            top: "clamp(340px, 42vh, 400px)",
             width: "1080px",
             marginLeft: "-540px",
           }}
