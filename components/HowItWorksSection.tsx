@@ -9,6 +9,7 @@ interface HowItWorksProps {
 
 export default function HowItWorksSection({ progress }: HowItWorksProps) {
   // Active step calculated based on progress (0 to 3)
+  const cl = (v: number) => Math.max(0, Math.min(1, v));
   const activeStep = Math.min(3, Math.floor(progress * 4.3));
 
   const stepsData = [
@@ -74,12 +75,14 @@ export default function HowItWorksSection({ progress }: HowItWorksProps) {
             position: "absolute",
             left: 0,
             right: 0,
-            top: "clamp(80px, 12vh, 110px)",
+            top: "clamp(60px, 8.5vh, 76px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             textAlign: "center",
-            padding: "0 20px",
+            zIndex: 15,
+            padding: "0 20px 12px",
+            background: "linear-gradient(to bottom, #F7F7F5 75%, rgba(247,247,245,0) 100%)",
           }}
         >
           <span className="lab" style={{ color: "#6B6B6B" }}>
@@ -88,7 +91,7 @@ export default function HowItWorksSection({ progress }: HowItWorksProps) {
           <h2
             className="serif sec-heading-how"
             style={{
-              margin: "16px 0 0",
+              margin: "12px 0 0",
               fontSize: "clamp(26px, 5.2vw, 78px)",
               lineHeight: 1.04,
               letterSpacing: "-.01em",
@@ -97,7 +100,7 @@ export default function HowItWorksSection({ progress }: HowItWorksProps) {
             From search to the{" "}
             <span className="i">right fit.</span>
           </h2>
-          <p className="sec-sub-text" style={{ margin: "12px 0 0", fontSize: "clamp(13px, 3.8vw, 15px)", color: "#6B6B6B", maxWidth: "480px" }}>
+          <p className="sec-sub-text" style={{ margin: "10px 0 0", fontSize: "clamp(13px, 3.8vw, 15px)", lineHeight: 1.5, color: "#6B6B6B", maxWidth: "380px" }}>
             A simpler way to find and connect with the right investors or companies.
           </p>
         </div>
@@ -370,309 +373,297 @@ export default function HowItWorksSection({ progress }: HowItWorksProps) {
           </div>
         </div>
 
-        {/* Mobile Dedicated Stepper (Screen width < 861px) */}
-        <div
-          className="how-grid-mobile"
-          style={{
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
-            top: "clamp(200px, 32vh, 260px)",
-            width: "calc(100% - 32px)",
-            maxWidth: "420px",
-          }}
-        >
-          {/* Step Sequence Pills Tracker */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              marginBottom: "16px",
-              padding: "0 6px",
-            }}
-          >
-            {stepsData.map((s, idx) => {
-              const isPast = idx < activeStep;
-              const isCurrent = idx === activeStep;
-              return (
-                <React.Fragment key={s.n}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "6px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        width: "24px",
-                        height: "24px",
-                        borderRadius: "50%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "10.5px",
-                        fontWeight: 500,
-                        background: isCurrent ? "#0B0B0B" : isPast ? "#1A1A1A" : "#FFFFFF",
-                        color: isCurrent ? "#F7F7F5" : isPast ? "#F7F7F5" : "#6B6B6B",
-                        border: `1px solid ${isCurrent ? "#0B0B0B" : isPast ? "#1A1A1A" : "rgba(11,11,11,0.16)"}`,
-                        boxShadow: isCurrent ? "0 4px 12px rgba(11,11,11,0.2)" : "none",
-                        transition: "all 0.4s ease",
-                      }}
-                    >
-                      {isPast ? "✓" : s.n}
-                    </span>
-                    {isCurrent && (
-                      <span
-                        style={{
-                          fontSize: "11.5px",
-                          fontWeight: 500,
-                          color: "#0B0B0B",
-                          whiteSpace: "nowrap",
-                        }}
-                      >
-                        {s.t}
-                      </span>
-                    )}
-                  </div>
-                  {idx < 3 && (
-                    <span
-                      style={{
-                        flexGrow: 1,
-                        height: "1px",
-                        margin: "0 6px",
-                        background: idx < activeStep ? "#0B0B0B" : "rgba(11,11,11,0.12)",
-                        transition: "background 0.4s ease",
-                      }}
-                    />
-                  )}
-                </React.Fragment>
-              );
-            })}
-          </div>
+        {/* Mobile Dedicated Vertical Stack (Screen width < 861px) */}
+        {(() => {
+          // Reveal calculations: each card appears one below another as user scrolls down
+          // Once revealed, a card NEVER disappears (rev stays at 1.0)
+          const rev0 = cl(progress * 7);
+          const rev1 = cl((progress - 0.18) / 0.18);
+          const rev2 = cl((progress - 0.42) / 0.18);
+          const rev3 = cl((progress - 0.66) / 0.18);
 
-          {/* Active Step Card */}
-          {(() => {
-            const s = stepsData[activeStep];
-            return (
+          const revs = [rev0, rev1, rev2, rev3];
+
+          // Smooth upward shift so revealed cards 03 & 04 stay comfortably visible in viewport
+          const scrollShift = cl((progress - 0.32) / 0.58) * 360;
+
+          return (
+            <div
+              className="how-grid-mobile"
+              style={{
+                position: "absolute",
+                left: "50%",
+                transform: "translateX(-50%)",
+                top: "clamp(245px, 34vh, 280px)",
+                width: "calc(100% - 32px)",
+                maxWidth: "420px",
+              }}
+            >
               <div
-                key={s.n}
                 style={{
-                  position: "relative",
-                  boxSizing: "border-box",
-                  padding: "24px 20px",
-                  borderRadius: "16px",
-                  background: "#0B0B0B",
-                  color: "#F7F7F5",
-                  border: "1px solid #0B0B0B",
-                  boxShadow: "0 25px 50px -20px rgba(11,11,11,0.45)",
                   display: "flex",
                   flexDirection: "column",
-                  minHeight: "220px",
+                  transform: `translateY(${-scrollShift.toFixed(1)}px)`,
+                  transition: "transform 0.12s ease-out",
                 }}
               >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: "12px", opacity: 0.6, letterSpacing: ".05em" }}>
-                    STEP {s.n} OF 04
-                  </span>
-                  <span
-                    style={{
-                      width: "36px",
-                      height: "36px",
-                      borderRadius: "50%",
-                      background: "#F7F7F5",
-                      color: "#0B0B0B",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.4"
-                      aria-hidden="true"
-                    >
-                      <path d={s.icon} />
-                    </svg>
-                  </span>
-                </div>
+                {stepsData.map((s, idx) => {
+                  const rev = revs[idx];
+                  const op = rev;
+                  const ty = (1 - rev) * 28;
 
-                <div style={{ marginTop: "18px", fontSize: "18px", fontWeight: 500, letterSpacing: "-.01em" }}>
-                  {s.t}
-                </div>
-                <div style={{ marginTop: "8px", fontSize: "13.5px", lineHeight: 1.55, opacity: 0.72 }}>
-                  {s.d}
-                </div>
+                  return (
+                    <React.Fragment key={s.n}>
+                      {/* Vertical connector line between cards */}
+                      {idx > 0 && (
+                        <div
+                          aria-hidden="true"
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            height: "20px",
+                            justifyContent: "center",
+                            opacity: op,
+                            transform: `translateY(${ty.toFixed(1)}px)`,
+                            transition: "opacity 0.35s ease",
+                          }}
+                        >
+                          <span
+                            style={{
+                              width: "2px",
+                              height: "100%",
+                              background: "#0B0B0B",
+                              borderRadius: "1px",
+                            }}
+                          />
+                        </div>
+                      )}
 
-                {/* Micro Indicators for Current Step on Mobile */}
-                <div
-                  aria-hidden="true"
-                  style={{
-                    marginTop: "20px",
-                    paddingTop: "14px",
-                    borderTop: "1px solid rgba(247,247,245,0.1)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                  }}
-                >
-                  {activeStep === 0 && (
-                    <>
-                      <span
-                        className="chipx"
+                      {/* Card (Appears below previous card, previous cards remain visible) */}
+                      <div
                         style={{
-                          padding: "4px 10px",
-                          borderRadius: "999px",
-                          fontSize: "11px",
-                          border: "1px solid rgba(247,247,245,0.25)",
-                          background: "#F7F7F5",
-                          color: "#0B0B0B",
-                          fontWeight: 500,
-                        }}
-                      >
-                        Seed
-                      </span>
-                      <span
-                        className="chipx"
-                        style={{
-                          padding: "4px 10px",
-                          borderRadius: "999px",
-                          fontSize: "11px",
-                          border: "1px solid rgba(247,247,245,0.25)",
-                          background: "#F7F7F5",
-                          color: "#0B0B0B",
-                          fontWeight: 500,
-                        }}
-                      >
-                        FinTech
-                      </span>
-                      <span
-                        className="chipx"
-                        style={{
-                          padding: "4px 10px",
-                          borderRadius: "999px",
-                          fontSize: "11px",
-                          border: "1px solid rgba(247,247,245,0.25)",
-                          background: "#F7F7F5",
-                          color: "#0B0B0B",
-                          fontWeight: 500,
-                        }}
-                      >
-                        ₹50L+
-                      </span>
-                    </>
-                  )}
-
-                  {activeStep === 1 && (
-                    <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "5px" }}>
-                      <span
-                        className="bar"
-                        style={{
-                          display: "block",
-                          height: "4px",
-                          borderRadius: "2px",
-                          background: "#F7F7F5",
-                          width: "100%",
-                        }}
-                      />
-                      <span
-                        className="bar"
-                        style={{
-                          display: "block",
-                          height: "4px",
-                          borderRadius: "2px",
-                          background: "#F7F7F5",
-                          opacity: 0.45,
-                          width: "70%",
-                        }}
-                      />
-                      <span
-                        className="bar"
-                        style={{
-                          display: "block",
-                          height: "4px",
-                          borderRadius: "2px",
-                          background: "#F7F7F5",
-                          opacity: 0.25,
-                          width: "40%",
-                        }}
-                      />
-                    </div>
-                  )}
-
-                  {activeStep === 2 && (
-                    <div style={{ position: "relative", flexGrow: 1, height: "14px", display: "flex", alignItems: "center" }}>
-                      <span
-                        style={{
-                          width: 8,
-                          height: 8,
-                          borderRadius: "50%",
-                          background: "#F7F7F5",
-                        }}
-                      />
-                      <span
-                        style={{
-                          flexGrow: 1,
-                          height: 2,
-                          background: "#F7F7F5",
-                          margin: "0 6px",
-                        }}
-                      />
-                      <span
-                        style={{
-                          width: 8,
-                          height: 8,
-                          borderRadius: "50%",
-                          border: "2px solid #F7F7F5",
                           boxSizing: "border-box",
-                        }}
-                      />
-                    </div>
-                  )}
-
-                  {activeStep === 3 && (
-                    <div style={{ position: "relative", flexGrow: 1, height: "14px", display: "flex", alignItems: "center" }}>
-                      <span
-                        style={{
-                          flexGrow: 1,
-                          height: 2,
-                          background: "rgba(247,247,245,0.3)",
-                        }}
-                      />
-                      <span
-                        style={{
-                          marginLeft: "8px",
-                          fontSize: "14px",
+                          padding: "20px 18px",
+                          borderRadius: "16px",
+                          background: "#0B0B0B",
                           color: "#F7F7F5",
+                          border: "1px solid rgba(247,247,245,0.12)",
+                          boxShadow: "0 14px 34px -12px rgba(0,0,0,0.4)",
+                          opacity: Number(op.toFixed(3)),
+                          transform: `translateY(${ty.toFixed(1)}px)`,
+                          transition: "opacity 0.35s ease, transform 0.35s ease-out",
+                          pointerEvents: op > 0.3 ? "auto" : "none",
                         }}
                       >
-                        → Connected
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })()}
+                        {/* Step Header */}
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span style={{ fontSize: "11px", opacity: 0.6, letterSpacing: ".06em", fontWeight: 600 }}>
+                            STEP {s.n} OF 04
+                          </span>
+                          <span
+                            style={{
+                              width: "32px",
+                              height: "32px",
+                              borderRadius: "50%",
+                              background: "#F7F7F5",
+                              color: "#0B0B0B",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <svg
+                              width="15"
+                              height="15"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.4"
+                              aria-hidden="true"
+                            >
+                              <path d={s.icon} />
+                            </svg>
+                          </span>
+                        </div>
 
-          {/* Micro Scroll Hint */}
-          <div
-            style={{
-              marginTop: "12px",
-              textAlign: "center",
-              fontSize: "11px",
-              color: "#9A9A96",
-              letterSpacing: ".02em",
-            }}
-          >
-            {activeStep < 3 ? `Scroll to reveal step 0${activeStep + 2} ↓` : "All steps completed ✓"}
-          </div>
-        </div>
+                        {/* Title & Description */}
+                        <div style={{ marginTop: "12px", fontSize: "17px", fontWeight: 600, letterSpacing: "-.01em" }}>
+                          {s.t}
+                        </div>
+                        <div style={{ marginTop: "6px", fontSize: "13px", lineHeight: 1.5, opacity: 0.72 }}>
+                          {s.d}
+                        </div>
+
+                        {/* Micro-Indicators */}
+                        <div
+                          aria-hidden="true"
+                          style={{
+                            marginTop: "16px",
+                            paddingTop: "12px",
+                            borderTop: "1px solid rgba(247,247,245,0.08)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "8px",
+                          }}
+                        >
+                          {idx === 0 && (
+                            <>
+                              <span
+                                className="chipx"
+                                style={{
+                                  padding: "3px 9px",
+                                  borderRadius: "999px",
+                                  fontSize: "11px",
+                                  border: "1px solid rgba(247,247,245,0.25)",
+                                  background: "#F7F7F5",
+                                  color: "#0B0B0B",
+                                  fontWeight: 500,
+                                }}
+                              >
+                                Seed
+                              </span>
+                              <span
+                                className="chipx"
+                                style={{
+                                  padding: "3px 9px",
+                                  borderRadius: "999px",
+                                  fontSize: "11px",
+                                  border: "1px solid rgba(247,247,245,0.25)",
+                                  background: "#F7F7F5",
+                                  color: "#0B0B0B",
+                                  fontWeight: 500,
+                                }}
+                              >
+                                FinTech
+                              </span>
+                              <span
+                                className="chipx"
+                                style={{
+                                  padding: "3px 9px",
+                                  borderRadius: "999px",
+                                  fontSize: "11px",
+                                  border: "1px solid rgba(247,247,245,0.25)",
+                                  background: "#F7F7F5",
+                                  color: "#0B0B0B",
+                                  fontWeight: 500,
+                                }}
+                              >
+                                ₹50L+
+                              </span>
+                            </>
+                          )}
+
+                          {idx === 1 && (
+                            <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "5px" }}>
+                              <span
+                                className="bar"
+                                style={{
+                                  display: "block",
+                                  height: "4px",
+                                  borderRadius: "2px",
+                                  background: "#F7F7F5",
+                                  width: "100%",
+                                }}
+                              />
+                              <span
+                                className="bar"
+                                style={{
+                                  display: "block",
+                                  height: "4px",
+                                  borderRadius: "2px",
+                                  background: "#F7F7F5",
+                                  opacity: 0.45,
+                                  width: "70%",
+                                }}
+                              />
+                              <span
+                                className="bar"
+                                style={{
+                                  display: "block",
+                                  height: "4px",
+                                  borderRadius: "2px",
+                                  background: "#F7F7F5",
+                                  opacity: 0.25,
+                                  width: "40%",
+                                }}
+                              />
+                            </div>
+                          )}
+
+                          {idx === 2 && (
+                            <div style={{ position: "relative", flexGrow: 1, height: "14px", display: "flex", alignItems: "center" }}>
+                              <span
+                                style={{
+                                  width: 8,
+                                  height: 8,
+                                  borderRadius: "50%",
+                                  background: "#F7F7F5",
+                                }}
+                              />
+                              <span
+                                style={{
+                                  flexGrow: 1,
+                                  height: 2,
+                                  background: "#F7F7F5",
+                                  margin: "0 6px",
+                                }}
+                              />
+                              <span
+                                style={{
+                                  width: 8,
+                                  height: 8,
+                                  borderRadius: "50%",
+                                  border: "2px solid #F7F7F5",
+                                  boxSizing: "border-box",
+                                }}
+                              />
+                            </div>
+                          )}
+
+                          {idx === 3 && (
+                            <div style={{ position: "relative", flexGrow: 1, height: "14px", display: "flex", alignItems: "center" }}>
+                              <span
+                                style={{
+                                  flexGrow: 1,
+                                  height: 2,
+                                  background: "rgba(247,247,245,0.3)",
+                                }}
+                              />
+                              <span
+                                style={{
+                                  marginLeft: "8px",
+                                  fontSize: "13px",
+                                  color: "#F7F7F5",
+                                  fontWeight: 500,
+                                }}
+                              >
+                                → Connected
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </React.Fragment>
+                  );
+                })}
+              </div>
+
+              {/* Progress Indicator hint */}
+              <div
+                style={{
+                  marginTop: "16px",
+                  textAlign: "center",
+                  fontSize: "11px",
+                  color: "#9A9A96",
+                  letterSpacing: ".02em",
+                }}
+              >
+                {rev3 < 0.8 ? "Scroll down to reveal more steps ↓" : "All 4 steps revealed ✓"}
+              </div>
+            </div>
+          );
+        })()}
       </div>
     </section>
   );

@@ -541,7 +541,7 @@ export default function MatchSection({ progress }: MatchSectionProps) {
             position: "absolute",
             left: "50%",
             transform: "translateX(-50%)",
-            top: "clamp(160px, 23vh, 220px)",
+            top: "clamp(185px, 26vh, 230px)",
             width: "calc(100% - 24px)",
             maxWidth: "420px",
           }}

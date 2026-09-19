@@ -572,7 +572,7 @@ a:hover .ar, button:hover .ar {
 
   /* Section Header vertical clearance on mobile */
   .sec-header-wrap {
-    top: clamp(68px, 10vh, 88px) !important;
+    top: clamp(60px, 8.5vh, 76px) !important;
     padding: 0 16px !important;
   }
 
@@ -640,6 +640,45 @@ a:hover .ar, button:hover .ar {
     bottom: 24px !important;
   }
 
+  /* Pricing Section */
+  .pricing-section {
+    min-height: auto !important;
+    padding-bottom: 80px !important;
+  }
+  .pricing-header-wrap {
+    padding-top: 72px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .pricing-grid-container {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    margin: 32px auto 0 !important;
+    width: calc(100% - 32px) !important;
+    max-width: 440px !important;
+    border: none !important;
+    background: transparent !important;
+  }
+  .plan {
+    border-left: none !important;
+    border: 1px solid rgba(11,11,11,0.12) !important;
+    border-radius: 16px !important;
+    padding: 24px 20px !important;
+    background: #FFFFFF !important;
+    box-shadow: 0 4px 16px rgba(11,11,11,0.04) !important;
+  }
+  .plan-name {
+    font-size: 38px !important;
+    margin-top: 12px !important;
+  }
+  .pricing-rows-grid {
+    grid-template-columns: 1fr !important;
+    margin: 36px auto 0 !important;
+    gap: 28px !important;
+    max-width: 440px !important;
+    padding: 0 16px !important;
+  }
+
   /* Verification Section */
   .verification-box {
     width: calc(100% - 32px) !important;
@@ -647,7 +686,7 @@ a:hover .ar, button:hover .ar {
     left: 50% !important;
     margin-left: 0 !important;
     transform: translateX(-50%) !important;
-    top: clamp(230px, 35vh, 290px) !important;
+    top: clamp(225px, 32vh, 275px) !important;
   }
   .layer {
     padding: 0 16px !important;
@@ -657,7 +696,7 @@ a:hover .ar, button:hover .ar {
 
   /* Action Section */
   .action-stick-track {
-    top: clamp(260px, 48vh, 340px) !important;
+    top: clamp(250px, 44vh, 320px) !important;
   }
 
   /* Section Heights calibrated for mobile scroll pacing & eliminating dead space */
@@ -683,11 +722,11 @@ a:hover .ar, button:hover .ar {
     height: 2400px !important;
   }
   .video-section {
-    padding: 64px 16px 36px !important;
+    padding: 80px 16px 50px !important;
   }
   .final-cta-section {
-    padding-top: clamp(60px, 10vh, 90px) !important;
-    padding-bottom: 28px !important;
+    padding-top: 80px !important;
+    padding-bottom: 40px !important;
   }
   .hero-scroll-indicator {
     bottom: clamp(16px, 3vh, 32px) !important;
@@ -697,13 +736,13 @@ a:hover .ar, button:hover .ar {
   }
   .final-travel-line {
     width: calc(100% - 64px) !important;
-    margin: 32px auto 0 !important;
+    margin: 36px auto 0 !important;
   }
 
   /* Footer */
   footer,
   .site-footer {
-    margin: 32px 16px 0 !important;
+    margin: 40px 16px 0 !important;
     flex-direction: column !important;
     gap: 16px !important;
     text-align: center !important;

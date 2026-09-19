@@ -35,6 +35,7 @@ export default function PricingSection({ magneticRef }: PricingProps) {
   return (
     <section
       id="pricing"
+      className="pricing-section"
       data-theme="light"
       aria-label="Choose your move"
       style={{
@@ -50,6 +51,7 @@ export default function PricingSection({ magneticRef }: PricingProps) {
 
       {/* Section Header */}
       <div
+        className="pricing-header-wrap"
         style={{
           position: "relative",
           paddingTop: "130px",
@@ -138,7 +140,7 @@ export default function PricingSection({ magneticRef }: PricingProps) {
               </span>
 
               <span
-                className="serif"
+                className="serif plan-name"
                 style={{
                   display: "block",
                   marginTop: "18px",
