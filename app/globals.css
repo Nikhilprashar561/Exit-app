@@ -553,11 +553,39 @@ a:hover .ar, button:hover .ar {
 }
 
 /* Responsive Styles */
+@media (max-width: 1199px) {
+  .hero-anno-founder,
+  .hero-anno-investor,
+  .founder-anno-1,
+  .founder-anno-2,
+  .founder-anno-3,
+  .investor-side-notes-left,
+  .investor-side-notes-right {
+    display: none !important;
+  }
+  .founder-phone-wrap {
+    transform: scale(0.82) !important;
+    transform-origin: center top !important;
+  }
+  .investor-ui-box {
+    left: 50% !important;
+    margin-left: 0 !important;
+    transform: translateX(-50%) scale(0.94) !important;
+    transform-origin: center top !important;
+  }
+  .investor-phase-bar {
+    left: 50% !important;
+    margin-left: 0 !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
 @media (max-width: 1180px) {
   .how-grid-container {
-    width: 92% !important;
+    width: min(1080px, 92%) !important;
     margin-left: 0 !important;
-    left: 4% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
   .pricing-grid-container {
     width: 92% !important;
@@ -573,6 +601,51 @@ a:hover .ar, button:hover .ar {
   }
 }
 
+/* Tablet Dedicated 2x2 Grid for How It Works (Screen 681px - 1023px) */
+@media (min-width: 681px) and (max-width: 1023px) {
+  .how-grid-container.how-grid-desktop {
+    display: block !important;
+    width: min(720px, calc(100% - 48px)) !important;
+    left: 50% !important;
+    margin-left: 0 !important;
+    transform: translateX(-50%) !important;
+    top: clamp(210px, 27vh, 260px) !important;
+  }
+  .how-grid-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+  .how-grid-cards .card {
+    height: auto !important;
+    min-height: 195px !important;
+    padding: 18px 20px !important;
+  }
+  .how-line-desktop,
+  .how-line-fill-desktop {
+    display: none !important;
+  }
+  .how-grid-mobile {
+    display: none !important;
+  }
+  .verification-box {
+    width: min(580px, calc(100% - 48px)) !important;
+    left: 50% !important;
+    margin-left: 0 !important;
+    transform: translateX(-50%) !important;
+    top: clamp(210px, 29vh, 255px) !important;
+  }
+  header.nav-header {
+    padding: 0 24px !important;
+  }
+  nav.nav-links-desktop {
+    gap: 20px !important;
+  }
+  .nav-cta-desktop {
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+  }
+}
+
 @media (max-width: 860px) {
   header.nav-header {
     padding: 0 20px !important;
@@ -585,10 +658,6 @@ a:hover .ar, button:hover .ar {
   }
   .hamburger-btn {
     display: flex !important;
-  }
-  .hero-anno-founder,
-  .hero-anno-investor {
-    display: none !important;
   }
   .node {
     opacity: 0 !important;
@@ -622,15 +691,15 @@ a:hover .ar, button:hover .ar {
     height: 100vh !important;
   }
 
-  /* Section Header vertical clearance on mobile */
+  /* Section Header vertical clearance on mobile: guaranteed 20px+ buffer below 62px navbar */
   .sec-header-wrap {
-    top: clamp(65px, 9vh, 80px) !important;
+    top: clamp(82px, 11vh, 105px) !important;
     padding: 0 16px !important;
   }
   .how-section .sec-header-wrap {
     background: #F7F7F5 !important;
     border-bottom: 1px solid rgba(11, 11, 11, 0.06) !important;
-    padding-bottom: 14px !important;
+    padding-bottom: 12px !important;
   }
 
   /* Hero Section Mobile Layout */
@@ -638,7 +707,7 @@ a:hover .ar, button:hover .ar {
     height: auto !important;
     min-height: calc(100svh - 40px) !important;
     max-height: none !important;
-    padding-top: clamp(74px, 12vh, 94px) !important;
+    padding-top: clamp(90px, 13vh, 115px) !important;
     padding-bottom: clamp(36px, 6vh, 48px) !important;
     display: flex !important;
     flex-direction: column !important;
@@ -669,40 +738,26 @@ a:hover .ar, button:hover .ar {
     display: none !important;
   }
 
-  /* How It Works Desktop / Mobile visibility toggles */
-  .how-grid-desktop {
-    display: none !important;
-  }
-  .how-grid-mobile {
-    display: block !important;
-    top: clamp(200px, 28vh, 230px) !important;
-    height: calc(100svh - 220px) !important;
-    overflow: hidden !important;
-  }
-
   /* Match Section Desktop / Mobile visibility toggles */
   .match-desktop {
     display: none !important;
   }
   .match-mobile {
     display: block !important;
-    top: clamp(225px, 32vh, 270px) !important;
+    top: clamp(205px, 28vh, 245px) !important;
   }
 
   /* Founders Section */
   .founder-phone-wrap {
     left: 50% !important;
     margin-left: 0 !important;
-    top: clamp(230px, 36vh, 280px) !important;
+    top: clamp(225px, 34vh, 270px) !important;
     transform: scale(0.75) !important;
     transform-origin: center top !important;
   }
   .founder-phone-1,
   .founder-phone-2 {
     left: -134px !important;
-  }
-  .founder-anno-1, .founder-anno-2, .founder-anno-3 {
-    display: none !important;
   }
 
   /* Investors Section */
@@ -712,11 +767,7 @@ a:hover .ar, button:hover .ar {
     left: 50% !important;
     margin-left: 0 !important;
     transform: translateX(-50%) !important;
-    top: clamp(210px, 31vh, 255px) !important;
-  }
-  .investor-side-notes-left,
-  .investor-side-notes-right {
-    display: none !important;
+    top: clamp(205px, 29vh, 245px) !important;
   }
   .investor-phase-bar {
     width: calc(100% - 32px) !important;
@@ -769,19 +820,17 @@ a:hover .ar, button:hover .ar {
   /* Verification Section */
   .verification-box {
     width: calc(100% - 32px) !important;
-    max-width: 420px !important;
+    max-width: 440px !important;
     left: 50% !important;
     margin-left: 0 !important;
     transform: translateX(-50%) !important;
-    top: clamp(210px, 30vh, 255px) !important;
+    top: clamp(205px, 28vh, 245px) !important;
   }
   .layer {
     padding: 0 16px !important;
     height: auto !important;
     min-height: 60px !important;
   }
-
-
 
   /* Section Heights calibrated for mobile scroll pacing & eliminating dead space */
   .noise-section {
@@ -808,7 +857,7 @@ a:hover .ar, button:hover .ar {
     padding: 0 !important;
   }
   .video-content-wrap {
-    padding: clamp(65px, 9vh, 80px) 16px 24px !important;
+    padding: clamp(75px, 10vh, 90px) 16px 24px !important;
   }
   .final-cta-section {
     padding-top: 70px !important;
@@ -837,30 +886,43 @@ a:hover .ar, button:hover .ar {
   }
 }
 
+/* Mobile-only How It Works Toggle (< 681px) */
+@media (max-width: 680px) {
+  .how-grid-desktop {
+    display: none !important;
+  }
+  .how-grid-mobile {
+    display: block !important;
+    top: clamp(175px, 24vh, 205px) !important;
+    height: calc(100svh - 190px) !important;
+    overflow: hidden !important;
+  }
+}
+
 @media (max-width: 440px) {
   .nav-logo-img {
     width: 95px !important;
     height: auto !important;
   }
   .founder-phone-wrap {
-    top: clamp(215px, 33vh, 255px) !important;
+    top: clamp(210px, 32vh, 250px) !important;
     transform: scale(0.68) !important;
   }
   .investor-ui-box {
-    top: clamp(195px, 28vh, 235px) !important;
+    top: clamp(195px, 27vh, 230px) !important;
     transform: translateX(-50%) scale(0.96) !important;
   }
   .verification-box {
-    top: clamp(195px, 28vh, 235px) !important;
+    top: clamp(195px, 27vh, 230px) !important;
     transform: translateX(-50%) scale(0.96) !important;
   }
   .match-mobile {
-    top: clamp(205px, 30vh, 245px) !important;
+    top: clamp(195px, 27vh, 230px) !important;
   }
   .how-grid-mobile {
-    top: clamp(190px, 26vh, 220px) !important;
+    top: clamp(170px, 23vh, 195px) !important;
+    height: calc(100svh - 180px) !important;
   }
-
 }
 
 @media (max-width: 360px) {
@@ -871,24 +933,24 @@ a:hover .ar, button:hover .ar {
     font-size: clamp(24px, 7.5vw, 28px) !important;
   }
   .founder-phone-wrap {
-    top: clamp(200px, 31vh, 235px) !important;
+    top: clamp(195px, 29vh, 230px) !important;
     transform: scale(0.60) !important;
   }
   .investor-ui-box {
-    top: clamp(180px, 26vh, 215px) !important;
+    top: clamp(180px, 25vh, 210px) !important;
     transform: translateX(-50%) scale(0.90) !important;
   }
   .verification-box {
-    top: clamp(180px, 25vh, 215px) !important;
+    top: clamp(180px, 24vh, 210px) !important;
     transform: translateX(-50%) scale(0.90) !important;
   }
   .match-mobile {
-    top: clamp(190px, 28vh, 225px) !important;
-  }
-  .how-grid-mobile {
     top: clamp(180px, 25vh, 210px) !important;
   }
-
+  .how-grid-mobile {
+    top: clamp(165px, 22vh, 190px) !important;
+    height: calc(100svh - 170px) !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -117,6 +117,7 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
         >
           {/* Subtle horizontal connecting line */}
           <div
+            className="how-line-desktop"
             aria-hidden="true"
             style={{
               position: "absolute",
@@ -128,6 +129,7 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
             }}
           />
           <div
+            className="how-line-fill-desktop"
             aria-hidden="true"
             style={{
               position: "absolute",
@@ -372,19 +374,19 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
           </div>
         </div>
 
-        {/* Mobile Dedicated Vertical Stack (Screen width < 861px) */}
+        {/* Mobile Dedicated Vertical Stack (Screen width < 681px) */}
         {(() => {
           // Reveal calculations: each card appears one below another as user scrolls down
           // Once revealed, a card NEVER disappears (rev stays at 1.0)
           const rev0 = 1.0;
           const rev1 = cl((progress - 0.10) / 0.12);
-          const rev2 = cl((progress - 0.26) / 0.12);
-          const rev3 = cl((progress - 0.42) / 0.12);
+          const rev2 = cl((progress - 0.24) / 0.12);
+          const rev3 = cl((progress - 0.38) / 0.12);
 
           const revs = [rev0, rev1, rev2, rev3];
 
-          // Smooth upward shift only as cards 03 & 04 reveal, keeping cards comfortably in view
-          const scrollShift = cl((progress - 0.28) / 0.46) * 170;
+          // Smooth upward shift as cards 03 & 04 reveal, ensuring all cards (especially Card 04) are fully visible
+          const scrollShift = cl((progress - 0.22) / 0.50) * 240;
 
           return (
             <div
@@ -393,12 +395,12 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                 position: "absolute",
                 left: "50%",
                 transform: "translateX(-50%)",
-                top: "clamp(200px, 28vh, 230px)",
+                top: "clamp(180px, 24vh, 215px)",
                 width: "calc(100% - 32px)",
                 maxWidth: "420px",
-                height: "calc(100svh - 220px)",
+                height: "calc(100svh - 195px)",
                 overflow: "hidden",
-                paddingTop: "6px",
+                paddingTop: "4px",
               }}
             >
               <div
@@ -407,12 +409,13 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                   flexDirection: "column",
                   transform: `translateY(${-scrollShift.toFixed(1)}px)`,
                   transition: "transform 0.12s ease-out",
+                  paddingBottom: "40px",
                 }}
               >
                 {stepsData.map((s, idx) => {
                   const rev = revs[idx];
                   const op = rev;
-                  const ty = (1 - rev) * 28;
+                  const ty = (1 - rev) * 24;
 
                   return (
                     <React.Fragment key={s.n}>
@@ -424,7 +427,7 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "center",
-                            height: "20px",
+                            height: "12px",
                             justifyContent: "center",
                             opacity: op,
                             transform: `translateY(${ty.toFixed(1)}px)`,
@@ -446,8 +449,8 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                       <div
                         style={{
                           boxSizing: "border-box",
-                          padding: "20px 18px",
-                          borderRadius: "16px",
+                          padding: "16px 16px",
+                          borderRadius: "14px",
                           background: "#0B0B0B",
                           color: "#F7F7F5",
                           border: "1px solid rgba(247,247,245,0.12)",
@@ -460,13 +463,13 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                       >
                         {/* Step Header */}
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                          <span style={{ fontSize: "11px", opacity: 0.6, letterSpacing: ".06em", fontWeight: 600 }}>
+                          <span style={{ fontSize: "10.5px", opacity: 0.6, letterSpacing: ".06em", fontWeight: 600 }}>
                             STEP {s.n} OF 04
                           </span>
                           <span
                             style={{
-                              width: "32px",
-                              height: "32px",
+                              width: "28px",
+                              height: "28px",
                               borderRadius: "50%",
                               background: "#F7F7F5",
                               color: "#0B0B0B",
@@ -476,8 +479,8 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                             }}
                           >
                             <svg
-                              width="15"
-                              height="15"
+                              width="13"
+                              height="13"
                               viewBox="0 0 16 16"
                               fill="none"
                               stroke="currentColor"
@@ -490,10 +493,10 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                         </div>
 
                         {/* Title & Description */}
-                        <div style={{ marginTop: "12px", fontSize: "17px", fontWeight: 600, letterSpacing: "-.01em" }}>
+                        <div style={{ marginTop: "8px", fontSize: "16px", fontWeight: 600, letterSpacing: "-.01em" }}>
                           {s.t}
                         </div>
-                        <div style={{ marginTop: "6px", fontSize: "13px", lineHeight: 1.5, opacity: 0.72 }}>
+                        <div style={{ marginTop: "4px", fontSize: "12.5px", lineHeight: 1.45, opacity: 0.72 }}>
                           {s.d}
                         </div>
 
@@ -501,8 +504,8 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                         <div
                           aria-hidden="true"
                           style={{
-                            marginTop: "16px",
-                            paddingTop: "12px",
+                            marginTop: "12px",
+                            paddingTop: "10px",
                             borderTop: "1px solid rgba(247,247,245,0.08)",
                             display: "flex",
                             alignItems: "center",
@@ -514,9 +517,9 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                               <span
                                 className="chipx"
                                 style={{
-                                  padding: "3px 9px",
+                                  padding: "2px 8px",
                                   borderRadius: "999px",
-                                  fontSize: "11px",
+                                  fontSize: "10.5px",
                                   border: "1px solid rgba(247,247,245,0.25)",
                                   background: "#F7F7F5",
                                   color: "#0B0B0B",
@@ -528,9 +531,9 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                               <span
                                 className="chipx"
                                 style={{
-                                  padding: "3px 9px",
+                                  padding: "2px 8px",
                                   borderRadius: "999px",
-                                  fontSize: "11px",
+                                  fontSize: "10.5px",
                                   border: "1px solid rgba(247,247,245,0.25)",
                                   background: "#F7F7F5",
                                   color: "#0B0B0B",
@@ -542,9 +545,9 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                               <span
                                 className="chipx"
                                 style={{
-                                  padding: "3px 9px",
+                                  padding: "2px 8px",
                                   borderRadius: "999px",
-                                  fontSize: "11px",
+                                  fontSize: "10.5px",
                                   border: "1px solid rgba(247,247,245,0.25)",
                                   background: "#F7F7F5",
                                   color: "#0B0B0B",
@@ -557,12 +560,12 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                           )}
 
                           {idx === 1 && (
-                            <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "5px" }}>
+                            <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "4px" }}>
                               <span
                                 className="bar"
                                 style={{
                                   display: "block",
-                                  height: "4px",
+                                  height: "3.5px",
                                   borderRadius: "2px",
                                   background: "#F7F7F5",
                                   width: "100%",
@@ -572,7 +575,7 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                                 className="bar"
                                 style={{
                                   display: "block",
-                                  height: "4px",
+                                  height: "3.5px",
                                   borderRadius: "2px",
                                   background: "#F7F7F5",
                                   opacity: 0.45,
@@ -583,7 +586,7 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
                                 className="bar"
                                 style={{
                                   display: "block",
-                                  height: "4px",
+                                  height: "3.5px",
                                   borderRadius: "2px",
                                   background: "#F7F7F5",
                                   opacity: 0.25,
@@ -654,7 +657,7 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
               {/* Progress Indicator hint */}
               <div
                 style={{
-                  marginTop: "16px",
+                  marginTop: "12px",
                   textAlign: "center",
                   fontSize: "11px",
                   color: "#9A9A96",
