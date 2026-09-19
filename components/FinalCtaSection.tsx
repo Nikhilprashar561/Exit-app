@@ -7,7 +7,7 @@ interface FinalCtaProps {
   magneticRef?: React.Ref<HTMLAnchorElement>;
 }
 
-export default function FinalCtaSection({ magneticRef }: FinalCtaProps) {
+function FinalCtaSection({ magneticRef }: FinalCtaProps) {
   return (
     <section
       id="final"
@@ -154,3 +154,5 @@ export default function FinalCtaSection({ magneticRef }: FinalCtaProps) {
     </section>
   );
 }
+
+export default React.memo(FinalCtaSection);

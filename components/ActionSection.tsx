@@ -7,7 +7,7 @@ interface ActionSectionProps {
   progress: number;
 }
 
-export default function ActionSection({ progress }: ActionSectionProps) {
+function ActionSection({ progress }: ActionSectionProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const trackFillRef = useRef<HTMLDivElement>(null);
   const secRef = useRef<HTMLDivElement>(null);
@@ -228,3 +228,5 @@ export default function ActionSection({ progress }: ActionSectionProps) {
     </section>
   );
 }
+
+export default React.memo(ActionSection);

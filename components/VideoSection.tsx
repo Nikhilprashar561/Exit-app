@@ -3,29 +3,36 @@
 
 import React, { useRef, useState, useEffect } from "react";
 
-export default function VideoSection() {
+function VideoSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [progressPercent, setProgressPercent] = useState(0);
 
-  // Attempt automatic autoplay when mounted
+  // Automatically play when scrolled into view, pause when offscreen to save CPU/GPU
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
 
     v.muted = true;
-    const playPromise = v.play();
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          setIsPlaying(true);
-        })
-        .catch(() => {
-          // Autoplay was prevented by browser policy, keep muted and wait for user interaction
-          setIsPlaying(false);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            v.play()
+              .then(() => setIsPlaying(true))
+              .catch(() => setIsPlaying(false));
+          } else {
+            v.pause();
+            setIsPlaying(false);
+          }
         });
-    }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(v);
 
     const handleTimeUpdate = () => {
       if (v.duration) {
@@ -35,6 +42,7 @@ export default function VideoSection() {
 
     v.addEventListener("timeupdate", handleTimeUpdate);
     return () => {
+      observer.disconnect();
       v.removeEventListener("timeupdate", handleTimeUpdate);
     };
   }, []);
@@ -194,11 +202,10 @@ export default function VideoSection() {
           <video
             ref={videoRef}
             id="exitVideo"
-            autoPlay
             muted={isMuted}
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             style={{
               width: "100%",
               height: "100%",
@@ -377,3 +384,5 @@ export default function VideoSection() {
     </section>
   );
 }
+
+export default React.memo(VideoSection);

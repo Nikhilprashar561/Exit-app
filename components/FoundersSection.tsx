@@ -7,7 +7,7 @@ interface FoundersSectionProps {
   progress: number;
 }
 
-export default function FoundersSection({ progress }: FoundersSectionProps) {
+function FoundersSection({ progress }: FoundersSectionProps) {
   // Step indicator fs from 0 to 5 based on progress
   const fs = Math.min(5, Math.floor(progress * 7));
 
@@ -638,3 +638,5 @@ export default function FoundersSection({ progress }: FoundersSectionProps) {
     </section>
   );
 }
+
+export default React.memo(FoundersSection);

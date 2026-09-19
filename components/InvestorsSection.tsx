@@ -7,7 +7,7 @@ interface InvestorsSectionProps {
   progress: number;
 }
 
-export default function InvestorsSection({ progress }: InvestorsSectionProps) {
+function InvestorsSection({ progress }: InvestorsSectionProps) {
   // Investor filter step `is` from 0 to 5 based on progress
   const is = Math.min(5, Math.floor(progress * 6.6));
 
@@ -431,3 +431,5 @@ export default function InvestorsSection({ progress }: InvestorsSectionProps) {
     </section>
   );
 }
+
+export default React.memo(InvestorsSection);

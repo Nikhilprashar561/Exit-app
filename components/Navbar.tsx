@@ -9,7 +9,7 @@ interface NavbarProps {
   compact: boolean;
 }
 
-export default function Navbar({ theme, compact }: NavbarProps) {
+function Navbar({ theme, compact }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const dark = theme === "dark";
 
@@ -251,3 +251,5 @@ export default function Navbar({ theme, compact }: NavbarProps) {
     </>
   );
 }
+
+export default React.memo(Navbar);

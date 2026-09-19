@@ -7,7 +7,7 @@ interface HowItWorksProps {
   progress: number;
 }
 
-export default function HowItWorksSection({ progress }: HowItWorksProps) {
+function HowItWorksSection({ progress }: HowItWorksProps) {
   // Active step calculated based on progress (0 to 3)
   const cl = (v: number) => Math.max(0, Math.min(1, v));
   const activeStep = Math.min(3, Math.floor(progress * 4.3));
@@ -668,3 +668,5 @@ export default function HowItWorksSection({ progress }: HowItWorksProps) {
     </section>
   );
 }
+
+export default React.memo(HowItWorksSection);

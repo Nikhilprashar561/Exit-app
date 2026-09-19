@@ -7,7 +7,7 @@ interface NoiseSectionProps {
   progress: number;
 }
 
-export default function NoiseSection({ progress }: NoiseSectionProps) {
+function NoiseSection({ progress }: NoiseSectionProps) {
   const frameRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const coreRef = useRef<HTMLSpanElement>(null);
@@ -323,3 +323,5 @@ export default function NoiseSection({ progress }: NoiseSectionProps) {
     </section>
   );
 }
+
+export default React.memo(NoiseSection);

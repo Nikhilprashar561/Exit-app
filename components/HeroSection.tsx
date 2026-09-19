@@ -7,7 +7,7 @@ interface HeroSectionProps {
   magneticRef?: React.Ref<HTMLAnchorElement>;
 }
 
-export default function HeroSection({ magneticRef }: HeroSectionProps) {
+function HeroSection({ magneticRef }: HeroSectionProps) {
   return (
     <section
       id="top"
@@ -238,3 +238,5 @@ export default function HeroSection({ magneticRef }: HeroSectionProps) {
     </section>
   );
 }
+
+export default React.memo(HeroSection);

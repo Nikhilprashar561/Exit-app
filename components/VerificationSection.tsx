@@ -7,7 +7,7 @@ interface VerificationProps {
   progress: number;
 }
 
-export default function VerificationSection({ progress }: VerificationProps) {
+function VerificationSection({ progress }: VerificationProps) {
   // Verification step `vs` from 0 to 5 based on progress
   const vs = Math.min(5, Math.floor(progress * 6.4));
 
@@ -233,3 +233,5 @@ export default function VerificationSection({ progress }: VerificationProps) {
     </section>
   );
 }
+
+export default React.memo(VerificationSection);

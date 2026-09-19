@@ -7,7 +7,7 @@ interface MatchSectionProps {
   progress: number;
 }
 
-export default function MatchSection({ progress }: MatchSectionProps) {
+function MatchSection({ progress }: MatchSectionProps) {
   // Matching step `ms` from 0 to 6 based on progress
   const ms = Math.max(0, Math.min(6, Math.floor((progress - 0.08) * 7.6)));
 
@@ -746,3 +746,5 @@ export default function MatchSection({ progress }: MatchSectionProps) {
     </section>
   );
 }
+
+export default React.memo(MatchSection);

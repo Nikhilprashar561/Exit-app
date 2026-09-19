@@ -66,6 +66,8 @@ a:hover {
   top: 0;
   height: clamp(700px, 100vh, 940px);
   overflow: clip;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 button {

@@ -61,6 +61,31 @@ export default function Home() {
       magnetsState.current.final = { el: finalBtnRef.current, x: 0, y: 0, set: false };
     }
 
+    // Cache DOM element lookups once
+    const sectionIds = [
+      "top",
+      "noise",
+      "how",
+      "founders",
+      "investors",
+      "verify",
+      "match",
+      "action",
+      "video",
+      "final",
+    ];
+    const sectionElements: { [key: string]: HTMLElement | null } = {};
+    for (const id of sectionIds) {
+      sectionElements[id] = document.getElementById(id);
+    }
+
+    let scrollDirty = true;
+    const handleScroll = () => {
+      scrollDirty = true;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+
     const handleMouseMove = (e: MouseEvent) => {
       const W = window.innerWidth || 1;
       const H = Math.min(window.innerHeight || 1, 1000);
@@ -76,101 +101,112 @@ export default function Home() {
 
     const tick = () => {
       const m = mouseState.current;
-      m.x += (m.tx - m.x) * 0.06;
-      m.y += (m.ty - m.y) * 0.06;
+      const diffX = m.tx - m.x;
+      const diffY = m.ty - m.y;
+      if (Math.abs(diffX) > 0.0005 || Math.abs(diffY) > 0.0005) {
+        m.x += diffX * 0.06;
+        m.y += diffY * 0.06;
 
-      if (rootRef.current) {
-        const rx = Math.round(m.x * 1000) / 1000;
-        const ry = Math.round(m.y * 1000) / 1000;
-        rootRef.current.style.setProperty("--mx", String(rx));
-        rootRef.current.style.setProperty("--my", String(ry));
-      }
-
-      // Calculate progress for each section
-      const vh = window.innerHeight || 800;
-
-      const calcP = (el: HTMLElement | null) => {
-        if (!el) return 0;
-        const r = el.getBoundingClientRect();
-        const span = r.height - vh;
-        if (span <= 0) return 0;
-        return cl(-r.top / span);
-      };
-
-      const pNoise = calcP(document.getElementById("noise"));
-      const pHow = calcP(document.getElementById("how"));
-      const pFounders = calcP(document.getElementById("founders"));
-      const pInvestors = calcP(document.getElementById("investors"));
-      const pVerify = calcP(document.getElementById("verify"));
-      const pMatch = calcP(document.getElementById("match"));
-      const pAction = calcP(document.getElementById("action"));
-
-      setProgress({
-        noise: pNoise,
-        how: pHow,
-        founders: pFounders,
-        investors: pInvestors,
-        verify: pVerify,
-        match: pMatch,
-        action: pAction,
-      });
-
-      // Nav compact & theme detection
-      if (rootRef.current) {
-        const isCompact = rootRef.current.getBoundingClientRect().top < -40;
-        setNavCompact(isCompact);
-      }
-
-      // Check current section under top: 50px
-      const sections = [
-        "top",
-        "noise",
-        "how",
-        "founders",
-        "investors",
-        "verify",
-        "match",
-        "action",
-        "video",
-        "final",
-      ];
-      let activeTheme: "light" | "dark" = "light";
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el) {
-          const r = el.getBoundingClientRect();
-          if (r.top <= 50 && r.bottom > 50) {
-            const themeAttr = el.getAttribute("data-theme") as "light" | "dark" | null;
-            if (themeAttr) activeTheme = themeAttr;
-            break;
-          }
+        if (rootRef.current) {
+          const rx = Math.round(m.x * 1000) / 1000;
+          const ry = Math.round(m.y * 1000) / 1000;
+          rootRef.current.style.setProperty("--mx", String(rx));
+          rootRef.current.style.setProperty("--my", String(ry));
         }
       }
-      setNavTheme(activeTheme);
+
+      // Only re-calculate scroll progress when user has scrolled or resized
+      if (scrollDirty) {
+        scrollDirty = false;
+        const vh = window.innerHeight || 800;
+
+        const calcP = (el: HTMLElement | null) => {
+          if (!el) return 0;
+          const r = el.getBoundingClientRect();
+          const span = r.height - vh;
+          if (span <= 0) return 0;
+          return cl(-r.top / span);
+        };
+
+        const pNoise = calcP(sectionElements.noise);
+        const pHow = calcP(sectionElements.how);
+        const pFounders = calcP(sectionElements.founders);
+        const pInvestors = calcP(sectionElements.investors);
+        const pVerify = calcP(sectionElements.verify);
+        const pMatch = calcP(sectionElements.match);
+        const pAction = calcP(sectionElements.action);
+
+        // State update with bailout to prevent re-rendering when unchanged
+        setProgress((prev) => {
+          if (
+            Math.abs(prev.noise - pNoise) < 0.0008 &&
+            Math.abs(prev.how - pHow) < 0.0008 &&
+            Math.abs(prev.founders - pFounders) < 0.0008 &&
+            Math.abs(prev.investors - pInvestors) < 0.0008 &&
+            Math.abs(prev.verify - pVerify) < 0.0008 &&
+            Math.abs(prev.match - pMatch) < 0.0008 &&
+            Math.abs(prev.action - pAction) < 0.0008
+          ) {
+            return prev;
+          }
+          return {
+            noise: pNoise,
+            how: pHow,
+            founders: pFounders,
+            investors: pInvestors,
+            verify: pVerify,
+            match: pMatch,
+            action: pAction,
+          };
+        });
+
+        // Nav compact detection with bailout
+        if (rootRef.current) {
+          const isCompact = rootRef.current.getBoundingClientRect().top < -40;
+          setNavCompact((prev) => (prev !== isCompact ? isCompact : prev));
+        }
+
+        // Active section theme detection with bailout
+        let activeTheme: "light" | "dark" = "light";
+        for (const id of sectionIds) {
+          const el = sectionElements[id];
+          if (el) {
+            const r = el.getBoundingClientRect();
+            if (r.top <= 50 && r.bottom > 50) {
+              const themeAttr = el.getAttribute("data-theme") as "light" | "dark" | null;
+              if (themeAttr) activeTheme = themeAttr;
+              break;
+            }
+          }
+        }
+        setNavTheme((prev) => (prev !== activeTheme ? activeTheme : prev));
+      }
 
       // Magnetic buttons logic
-      for (const k in magnetsState.current) {
-        const g = magnetsState.current[k];
-        if (!g.el) continue;
-        const r = g.el.getBoundingClientRect();
-        const btnCx = r.left + r.width / 2 - g.x;
-        const btnCy = r.top + r.height / 2 - g.y;
-        const dx = m.cx - btnCx;
-        const dy = m.cy - btnCy;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const tx = dist < 140 ? dx * 0.22 : 0;
-        const ty = dist < 140 ? dy * 0.3 : 0;
-        g.x += (tx - g.x) * 0.12;
-        g.y += (ty - g.y) * 0.12;
-        if (Math.abs(g.x) < 0.05 && Math.abs(g.y) < 0.05 && tx === 0) {
-          if (g.set) {
-            g.el.style.transform = "";
-            g.set = false;
+      if (m.cx > -100) {
+        for (const k in magnetsState.current) {
+          const g = magnetsState.current[k];
+          if (!g.el) continue;
+          const r = g.el.getBoundingClientRect();
+          const btnCx = r.left + r.width / 2 - g.x;
+          const btnCy = r.top + r.height / 2 - g.y;
+          const dx = m.cx - btnCx;
+          const dy = m.cy - btnCy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const tx = dist < 140 ? dx * 0.22 : 0;
+          const ty = dist < 140 ? dy * 0.3 : 0;
+          g.x += (tx - g.x) * 0.12;
+          g.y += (ty - g.y) * 0.12;
+          if (Math.abs(g.x) < 0.05 && Math.abs(g.y) < 0.05 && tx === 0) {
+            if (g.set) {
+              g.el.style.transform = "";
+              g.set = false;
+            }
+            continue;
           }
-          continue;
+          g.el.style.transform = `translate(${g.x.toFixed(2)}px, ${g.y.toFixed(2)}px)`;
+          g.set = true;
         }
-        g.el.style.transform = `translate(${g.x.toFixed(2)}px, ${g.y.toFixed(2)}px)`;
-        g.set = true;
       }
 
       rafId = requestAnimationFrame(tick);
@@ -180,6 +216,8 @@ export default function Home() {
 
     return () => {
       cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
