@@ -56,6 +56,7 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
 
         {/* Section top connector line */}
         <span
+          className="how-top-line"
           aria-hidden="true"
           style={{
             position: "absolute",
@@ -63,7 +64,7 @@ function HowItWorksSection({ progress }: HowItWorksProps) {
             top: 0,
             width: "1px",
             marginLeft: "-0.5px",
-            height: `${Math.min(1, progress * 8) * 84}px`,
+            height: `${Math.min(1, progress * 8) * 44}px`,
             background: "#0B0B0B",
           }}
         />
