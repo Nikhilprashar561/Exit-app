@@ -193,8 +193,10 @@ export default function Home() {
           const dx = m.cx - btnCx;
           const dy = m.cy - btnCy;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const tx = dist < 140 ? dx * 0.22 : 0;
-          const ty = dist < 140 ? dy * 0.3 : 0;
+          const rawTx = dist < 140 ? dx * 0.18 : 0;
+          const tx = Math.max(-14, Math.min(14, rawTx));
+          const rawTy = dist < 140 ? dy * 0.22 : 0;
+          const ty = Math.max(-14, Math.min(14, rawTy));
           g.x += (tx - g.x) * 0.12;
           g.y += (ty - g.y) * 0.12;
           if (Math.abs(g.x) < 0.05 && Math.abs(g.y) < 0.05 && tx === 0) {

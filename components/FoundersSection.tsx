@@ -125,7 +125,7 @@ function FoundersSection({ progress }: FoundersSectionProps) {
             position: "absolute",
             left: 0,
             right: 0,
-            top: "clamp(100px, 13vh, 125px)",
+            top: "clamp(85px, 11vh, 120px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

@@ -81,7 +81,7 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
             position: "absolute",
             left: 0,
             right: 0,
-            top: "clamp(100px, 13vh, 125px)",
+            top: "clamp(85px, 11vh, 120px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -113,7 +113,7 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
           className="investor-side-notes-left"
           style={{
             position: "absolute",
-            left: "calc(50% - 620px)",
+            left: "max(24px, calc(50% - 620px))",
             top: "50%",
             width: "190px",
             display: "flex",
@@ -146,7 +146,7 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
           className="investor-side-notes-right"
           style={{
             position: "absolute",
-            right: "calc(50% - 620px)",
+            right: "max(24px, calc(50% - 620px))",
             top: "50%",
             width: "190px",
             display: "flex",

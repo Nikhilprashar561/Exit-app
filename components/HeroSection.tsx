@@ -106,7 +106,7 @@ function HeroSection({ magneticRef }: HeroSectionProps) {
             marginTop: "32px",
             display: "flex",
             alignItems: "center",
-            gap: "24px",
+            gap: "36px",
             flexWrap: "wrap",
             justifyContent: "center",
           }}
@@ -131,7 +131,7 @@ function HeroSection({ magneticRef }: HeroSectionProps) {
         style={{
           animationDelay: "2.4s",
           position: "absolute",
-          left: "calc(50% - 610px)",
+          left: "max(24px, calc(50% - 610px))",
           top: "350px",
         }}
       >
@@ -180,7 +180,8 @@ function HeroSection({ magneticRef }: HeroSectionProps) {
         style={{
           animationDelay: "2.7s",
           position: "absolute",
-          left: "calc(50% + 330px)",
+          left: "auto",
+          right: "max(24px, calc(50% - 610px))",
           top: "520px",
         }}
       >
