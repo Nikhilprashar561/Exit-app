@@ -112,7 +112,7 @@ function FoundersSection({ progress }: FoundersSectionProps) {
             top: 0,
             width: "1px",
             marginLeft: "-0.5px",
-            height: `${Math.min(1, progress * 8) * 70}px`,
+            height: `${Math.min(1, progress * 8) * 78}px`,
             background: "#F7F7F5",
             opacity: 0.6,
           }}
@@ -172,7 +172,7 @@ function FoundersSection({ progress }: FoundersSectionProps) {
           style={{
             position: "absolute",
             left: "50%",
-            top: "clamp(255px, 29vh, 285px)",
+            top: "clamp(295px, 33vh, 325px)",
             width: 0,
             height: 0,
             perspective: "1400px",
