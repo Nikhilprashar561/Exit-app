@@ -73,7 +73,7 @@ function FoundersSection({ progress }: FoundersSectionProps) {
           style={{
             position: "absolute",
             left: "50%",
-            top: "45%",
+            top: "38%",
             width: "520px",
             height: "325px",
             marginLeft: "-260px",
@@ -172,7 +172,7 @@ function FoundersSection({ progress }: FoundersSectionProps) {
           style={{
             position: "absolute",
             left: "50%",
-            top: "44%",
+            top: "clamp(255px, 29vh, 285px)",
             width: 0,
             height: 0,
             perspective: "1400px",
@@ -184,7 +184,7 @@ function FoundersSection({ progress }: FoundersSectionProps) {
             style={{
               left: "-300px",
               top: 0,
-              transform: `translateY(${(1 - cl(progress * 1.7)) * 380}px) rotateX(${(1 - cl(progress * 1.7)) * 16}deg) rotateZ(-4deg) translate(calc(var(--mx, 0) * -6px), calc(var(--my, 0) * -4px))`,
+              transform: `translateY(${(1 - cl(progress * 1.7)) * 260}px) rotateX(${(1 - cl(progress * 1.7)) * 16}deg) rotateZ(-4deg) translate(calc(var(--mx, 0) * -6px), calc(var(--my, 0) * -4px))`,
               opacity: phone1Op,
               pointerEvents: phone1Op < 0.05 ? "none" : "auto",
             }}
@@ -405,9 +405,9 @@ function FoundersSection({ progress }: FoundersSectionProps) {
             className="phone founder-phone-2"
             style={{
               left: "32px",
-              top: "40px",
+              top: "32px",
               background: "#141414",
-              transform: `translateY(${(1 - cl((progress - 0.12) * 1.7)) * 460}px) rotateX(${(1 - cl((progress - 0.12) * 1.7)) * 18}deg) rotateZ(4deg) translate(calc(var(--mx, 0) * 8px), calc(var(--my, 0) * 5px))`,
+              transform: `translateY(${(1 - cl((progress - 0.12) * 1.7)) * 300}px) rotateX(${(1 - cl((progress - 0.12) * 1.7)) * 18}deg) rotateZ(4deg) translate(calc(var(--mx, 0) * 8px), calc(var(--my, 0) * 5px))`,
               opacity: phone2Op,
               pointerEvents: phone2Op < 0.05 ? "none" : "auto",
             }}
@@ -587,7 +587,6 @@ function FoundersSection({ progress }: FoundersSectionProps) {
           style={{
             position: "absolute",
             left: "calc(50% - 560px)",
-            top: "56%",
             width: "210px",
             opacity: cl((progress - 0.38) * 6),
             transform: `translateY(${(1 - cl((progress - 0.38) * 6)) * 14}px)`,
@@ -605,7 +604,6 @@ function FoundersSection({ progress }: FoundersSectionProps) {
           style={{
             position: "absolute",
             left: "calc(50% + 360px)",
-            top: "50%",
             width: "210px",
             opacity: cl((progress - 0.52) * 6),
             transform: `translateY(${(1 - cl((progress - 0.52) * 6)) * 14}px)`,
@@ -623,7 +621,6 @@ function FoundersSection({ progress }: FoundersSectionProps) {
           style={{
             position: "absolute",
             left: "calc(50% + 380px)",
-            top: "74%",
             width: "210px",
             opacity: cl((progress - 0.66) * 6),
             transform: `translateY(${(1 - cl((progress - 0.66) * 6)) * 14}px)`,

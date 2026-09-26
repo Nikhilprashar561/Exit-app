@@ -589,22 +589,31 @@ a:hover .ar, button:hover .ar {
 /* Base Desktop Styles for Founders Section (width >= 861px) */
 @media (min-width: 861px) {
   .founders-section .sec-header-wrap {
-    top: clamp(70px, 8.5vh, 95px) !important;
+    top: clamp(56px, 7vh, 76px) !important;
   }
   .founders-section .sec-heading-founders {
-    font-size: clamp(36px, 4.2vw, 56px) !important;
-    margin: 12px 0 0 !important;
+    font-size: clamp(34px, 3.8vw, 48px) !important;
+    margin: 10px 0 0 !important;
     line-height: 1.06 !important;
   }
   .founders-section .sec-sub-text {
     margin: 8px 0 0 !important;
-    font-size: clamp(13.5px, 1.1vw, 15px) !important;
+    font-size: clamp(13px, 1.05vw, 14.5px) !important;
     line-height: 1.5 !important;
   }
   .founders-section .founder-phone-wrap {
-    top: clamp(320px, 38vh, 355px) !important;
+    top: clamp(245px, 28vh, 275px) !important;
     transform: scale(0.82) !important;
     transform-origin: center top !important;
+  }
+  .founder-anno-1 {
+    top: clamp(285px, 33vh, 315px) !important;
+  }
+  .founder-anno-2 {
+    top: clamp(270px, 31vh, 300px) !important;
+  }
+  .founder-anno-3 {
+    top: clamp(430px, 48vh, 470px) !important;
   }
 }
 
@@ -614,22 +623,31 @@ a:hover .ar, button:hover .ar {
     top: clamp(75px, 10vh, 105px) !important;
   }
   .founders-section .sec-header-wrap {
-    top: clamp(52px, 7vh, 66px) !important;
+    top: clamp(38px, 5vh, 48px) !important;
   }
   .founders-section .sec-heading-founders {
-    font-size: clamp(28px, 3.2vw, 38px) !important;
-    margin: 8px 0 0 !important;
+    font-size: clamp(24px, 2.6vw, 30px) !important;
+    margin: 6px 0 0 !important;
     line-height: 1.08 !important;
   }
   .founders-section .sec-sub-text {
-    margin: 6px 0 0 !important;
-    font-size: 13px !important;
-    line-height: 1.45 !important;
+    margin: 5px 0 0 !important;
+    font-size: 12.5px !important;
+    line-height: 1.4 !important;
   }
-  .founder-phone-wrap {
-    top: clamp(235px, 34vh, 260px) !important;
-    transform: scale(0.62) !important;
+  .founders-section .founder-phone-wrap {
+    top: clamp(175px, 24vh, 192px) !important;
+    transform: scale(0.68) !important;
     transform-origin: center top !important;
+  }
+  .founder-anno-1 {
+    top: clamp(210px, 28vh, 230px) !important;
+  }
+  .founder-anno-2 {
+    top: clamp(195px, 26vh, 215px) !important;
+  }
+  .founder-anno-3 {
+    top: clamp(330px, 44vh, 355px) !important;
   }
   .investor-ui-box {
     left: 50% !important;
@@ -652,22 +670,58 @@ a:hover .ar, button:hover .ar {
 
 @media (min-width: 861px) and (min-height: 761px) and (max-height: 860px) {
   .founders-section .sec-header-wrap {
-    top: clamp(62px, 8vh, 80px) !important;
+    top: clamp(48px, 6.2vh, 60px) !important;
   }
   .founders-section .sec-heading-founders {
-    font-size: clamp(32px, 3.6vw, 46px) !important;
-    margin: 10px 0 0 !important;
+    font-size: clamp(28px, 3.2vw, 38px) !important;
+    margin: 8px 0 0 !important;
     line-height: 1.06 !important;
   }
   .founders-section .sec-sub-text {
-    margin: 8px 0 0 !important;
-    font-size: 14px !important;
-    line-height: 1.5 !important;
+    margin: 6px 0 0 !important;
+    font-size: 13.5px !important;
+    line-height: 1.45 !important;
   }
-  .founder-phone-wrap {
-    top: clamp(285px, 36vh, 315px) !important;
-    transform: scale(0.72) !important;
+  .founders-section .founder-phone-wrap {
+    top: clamp(210px, 26vh, 230px) !important;
+    transform: scale(0.75) !important;
     transform-origin: center top !important;
+  }
+  .founder-anno-1 {
+    top: clamp(250px, 31vh, 270px) !important;
+  }
+  .founder-anno-2 {
+    top: clamp(235px, 29vh, 255px) !important;
+  }
+  .founder-anno-3 {
+    top: clamp(385px, 47vh, 415px) !important;
+  }
+}
+
+@media (min-width: 861px) and (max-height: 640px) {
+  .founders-section .sec-header-wrap {
+    top: 30px !important;
+  }
+  .founders-section .sec-heading-founders {
+    font-size: 22px !important;
+    margin: 4px 0 0 !important;
+  }
+  .founders-section .sec-sub-text {
+    font-size: 11.5px !important;
+    margin: 4px 0 0 !important;
+  }
+  .founders-section .founder-phone-wrap {
+    top: 145px !important;
+    transform: scale(0.58) !important;
+  }
+  .founder-anno-1 {
+    top: 170px !important;
+  }
+  .founder-anno-2 {
+    top: 160px !important;
+  }
+  .founder-anno-3 {
+    top: 275px !important;
   }
 }
 
@@ -886,26 +940,29 @@ a:hover .ar, button:hover .ar {
 
   /* Founders Section */
   .founders-section .sec-header-wrap {
-    top: clamp(70px, 9.5vh, 85px) !important;
+    top: clamp(74px, 10vh, 88px) !important;
   }
   .founders-section .sec-heading-founders {
-    font-size: clamp(23px, 6.2vw, 32px) !important;
-    margin: 8px 0 0 !important;
-  }
-  .founders-section .sec-sub-text {
-    font-size: clamp(12px, 3.4vw, 13.5px) !important;
+    font-size: clamp(22px, 5.5vw, 28px) !important;
     margin: 6px 0 0 !important;
   }
-  .founder-phone-wrap {
+  .founders-section .sec-sub-text {
+    font-size: clamp(11.5px, 3.2vw, 13px) !important;
+    margin: 5px 0 0 !important;
+  }
+  .founders-section .founder-phone-wrap {
     left: 50% !important;
     margin-left: 0 !important;
-    top: clamp(255px, 36vh, 290px) !important;
-    transform: scale(0.72) !important;
+    top: clamp(198px, 26vh, 222px) !important;
+    transform: scale(0.66) !important;
     transform-origin: center top !important;
   }
   .founder-phone-1,
   .founder-phone-2 {
     left: -134px !important;
+  }
+  .founder-phone-2 {
+    top: 0 !important;
   }
 
   /* Investors Section */
@@ -1066,9 +1123,9 @@ a:hover .ar, button:hover .ar {
     width: 95px !important;
     height: auto !important;
   }
-  .founder-phone-wrap {
-    top: clamp(245px, 34vh, 275px) !important;
-    transform: scale(0.65) !important;
+  .founders-section .founder-phone-wrap {
+    top: clamp(192px, 25vh, 212px) !important;
+    transform: scale(0.62) !important;
   }
   .investor-ui-box {
     top: clamp(195px, 27vh, 230px) !important;
@@ -1094,9 +1151,12 @@ a:hover .ar, button:hover .ar {
   .hero-heading {
     font-size: clamp(24px, 7.5vw, 28px) !important;
   }
-  .founder-phone-wrap {
-    top: clamp(235px, 32vh, 255px) !important;
-    transform: scale(0.56) !important;
+  .founders-section .sec-header-wrap {
+    top: clamp(68px, 9vh, 78px) !important;
+  }
+  .founders-section .founder-phone-wrap {
+    top: clamp(178px, 23vh, 195px) !important;
+    transform: scale(0.55) !important;
   }
   .investor-ui-box {
     top: clamp(180px, 25vh, 210px) !important;
