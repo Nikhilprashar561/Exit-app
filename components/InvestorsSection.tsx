@@ -29,15 +29,15 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
     };
   });
 
-  const skel = [0, 1, 2, 3, 4].map((i) => {
-    const gone = is > 0 && i >= 5 - Math.min(5, Math.ceil(is * 1.25));
+  const skel = [0, 1, 2].map((i) => {
+    const gone = is > i;
     return {
-      mh: gone ? "0px" : "68px",
-      op: gone ? 0 : 0.55 - i * 0.08,
-      mt: gone ? "0px" : "8px",
-      pd: gone ? "0px 14px" : "14px",
-      w1: `${46 + ((i * 13) % 30)}%`,
-      w2: `${28 + ((i * 17) % 24)}%`,
+      mh: gone ? "0px" : "48px",
+      op: gone ? 0 : 0.5 - i * 0.12,
+      mt: gone ? "0px" : "6px",
+      pd: gone ? "0px 12px" : "8px 12px",
+      w1: `${46 + ((i * 13) % 25)}%`,
+      w2: `${28 + ((i * 17) % 20)}%`,
     };
   });
 
@@ -81,7 +81,7 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
             position: "absolute",
             left: 0,
             right: 0,
-            top: "clamp(85px, 11vh, 120px)",
+            top: "clamp(86px, 10.5vh, 108px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -95,15 +95,15 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
           <h2
             className="serif sec-heading-investors"
             style={{
-              margin: "14px 0 0",
-              fontSize: "clamp(28px, 5.4vw, 80px)",
-              lineHeight: 1.02,
+              margin: "10px 0 0",
+              fontSize: "clamp(26px, 4vw, 56px)",
+              lineHeight: 1.04,
               letterSpacing: "-.01em",
             }}
           >
             Look <span className="i">closer.</span>
           </h2>
-          <p className="sec-sub-text" style={{ margin: "10px 0 0", fontSize: "clamp(13px, 3.8vw, 15px)", lineHeight: 1.6, color: "#6B6B6B" }}>
+          <p className="sec-sub-text" style={{ margin: "6px 0 0", fontSize: "clamp(12.5px, 2.5vw, 14.5px)", lineHeight: 1.5, color: "#6B6B6B" }}>
             Discover companies that match the way you invest.
           </p>
         </div>
@@ -114,7 +114,7 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
           style={{
             position: "absolute",
             left: "max(24px, calc(50% - 620px))",
-            top: "50%",
+            top: "clamp(195px, 24vh, 225px)",
             width: "190px",
             display: "flex",
             flexDirection: "column",
@@ -147,7 +147,7 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
           style={{
             position: "absolute",
             right: "max(24px, calc(50% - 620px))",
-            top: "50%",
+            top: "clamp(195px, 24vh, 225px)",
             width: "190px",
             display: "flex",
             flexDirection: "column",
@@ -180,11 +180,12 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
           style={{
             position: "absolute",
             left: "50%",
-            top: "38%",
+            top: "clamp(188px, 23.5vh, 218px)",
             width: "560px",
+            maxWidth: "min(560px, calc(100% - 32px))",
             marginLeft: "-280px",
             transform: `scale(${0.86 + cl(progress * 2.5) * 0.14})`,
-            transformOrigin: "50% 0",
+            transformOrigin: "center top",
           }}
         >
           <div
@@ -344,30 +345,32 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
                     maxHeight: k.mh,
                     opacity: k.op,
                     marginTop: k.mt,
-                    borderRadius: "12px",
+                    borderRadius: "10px",
                     background: "#121212",
                     border: "1px solid #1E1E1E",
                     boxSizing: "border-box",
                     padding: k.pd,
+                    overflow: "hidden",
+                    transition: "max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease, padding 0.4s ease",
                   }}
                 >
-                  <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                    <span style={{ width: 38, height: 38, borderRadius: 9, background: "#222" }} />
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <span style={{ width: 32, height: 32, borderRadius: 8, background: "#1C1C1C", flexShrink: 0 }} />
                     <div style={{ flexGrow: 1 }}>
                       <div
                         style={{
-                          height: 8,
-                          borderRadius: 4,
-                          background: "#262626",
+                          height: 7,
+                          borderRadius: 3.5,
+                          background: "#242424",
                           width: k.w1,
                         }}
                       />
                       <div
                         style={{
-                          height: 6,
-                          marginTop: 7,
-                          borderRadius: 4,
-                          background: "#1F1F1F",
+                          height: 5,
+                          marginTop: 5,
+                          borderRadius: 2.5,
+                          background: "#1E1E1E",
                           width: k.w2,
                         }}
                       />
@@ -385,8 +388,9 @@ function InvestorsSection({ progress }: InvestorsSectionProps) {
           style={{
             position: "absolute",
             left: "50%",
-            bottom: "5%",
+            bottom: "clamp(20px, 3.5vh, 32px)",
             width: "560px",
+            maxWidth: "min(560px, calc(100% - 32px))",
             marginLeft: "-280px",
           }}
         >

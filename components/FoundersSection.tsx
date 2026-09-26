@@ -112,7 +112,7 @@ function FoundersSection({ progress }: FoundersSectionProps) {
             top: 0,
             width: "1px",
             marginLeft: "-0.5px",
-            height: `${Math.min(1, progress * 8) * 78}px`,
+            height: `${Math.min(1, progress * 8) * 36}px`,
             background: "#F7F7F5",
             opacity: 0.6,
           }}
@@ -125,7 +125,7 @@ function FoundersSection({ progress }: FoundersSectionProps) {
             position: "absolute",
             left: 0,
             right: 0,
-            top: "clamp(85px, 11vh, 120px)",
+            top: "clamp(96px, 12vh, 124px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -134,7 +134,7 @@ function FoundersSection({ progress }: FoundersSectionProps) {
             padding: "0 20px",
           }}
         >
-          <span className="lab" style={{ color: "#9A9A96" }}>
+          <span className="lab" style={{ color: "#9A9A96", position: "relative", zIndex: 3 }}>
             For founders
           </span>
           <h2
